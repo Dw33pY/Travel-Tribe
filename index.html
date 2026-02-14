@@ -96,12 +96,12 @@
 
     <div id="preloader" class="fixed inset-0 z-[100] bg-tribe-green flex flex-col items-center justify-center overflow-hidden">
         <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
-        <div class="relative z-10 text-center mb-16"> <!-- Added mb-16 to create space -->
+        <div class="relative z-10 text-center mb-16">
             <h1 class="loader-text text-5xl md:text-8xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-tribe-gold to-white opacity-0 translate-y-10">DISCOVER</h1>
             <h1 class="loader-text text-5xl md:text-8xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-tribe-gold to-white opacity-0 translate-y-10 absolute top-0 left-0 right-0">EXPLORE</h1>
             <h1 class="loader-text text-5xl md:text-8xl font-serif text-white opacity-0 translate-y-10 absolute top-0 left-0 right-0"><span class="text-tribe-gold">TRAVEL</span> TRIBE</h1>
         </div>
-        <div class="h-1 w-0 bg-tribe-gold rounded-full" id="loader-bar"></div> <!-- Removed mt-8, now spacing controlled by mb-16 above -->
+        <div class="h-1 w-0 bg-tribe-gold rounded-full" id="loader-bar"></div>
     </div>
 
     <div id="cursor" class="fixed w-8 h-8 border border-tribe-gold rounded-full pointer-events-none z-50 hidden md:block transition-transform duration-100 ease-out mix-blend-difference"></div>
@@ -116,6 +116,7 @@
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="index.html#home" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
                     <a href="destinations.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Destinations<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="services.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Services<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
                     <a href="about.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">About<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
                     <a href="contact.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Contact<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
                     <a href="https://wa.me/254112098616" class="book-now px-6 py-2 bg-tribe-dark text-white font-medium rounded-full hover:bg-tribe-clay transition-all transform hover:scale-105 shadow-lg">Book Now</a>
@@ -137,6 +138,7 @@
         <div class="text-center space-y-8 relative z-10">
             <a href="index.html#home" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Home</a>
             <a href="destinations.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Destinations</a>
+            <a href="services.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Services</a>
             <a href="about.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">About</a>
             <a href="contact.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Contact</a>
             <div class="pt-8 border-t border-gray-300 w-24 mx-auto opacity-0 mobile-line"></div>
@@ -223,6 +225,74 @@
             </div>
             <div class="text-center mt-12">
                 <a href="destinations.html" class="inline-flex items-center gap-2 text-tribe-dark font-medium hover:text-tribe-clay transition-colors">View All Destinations <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SERVICES SECTION -->
+    <section class="py-24 bg-tribe-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/wood-pattern.png')]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-tribe-gold font-bold tracking-widest uppercase text-sm">We Speak Travel</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-white mt-2">Our Services</h2>
+                <div class="w-24 h-1 bg-tribe-gold mx-auto mt-6"></div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service 1 -->
+                <div class="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-tribe-gold/30 transition-colors group">
+                    <div class="w-14 h-14 bg-tribe-gold/10 rounded-full flex items-center justify-center mb-4 text-tribe-gold text-2xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-plane"></i></div>
+                    <h3 class="text-xl font-serif mb-2">Air Ticketing</h3>
+                    <p class="text-gray-400 text-sm">Domestic & international flights at best rates.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-tribe-gold/30 transition-colors group">
+                    <div class="w-14 h-14 bg-tribe-gold/10 rounded-full flex items-center justify-center mb-4 text-tribe-gold text-2xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-hotel"></i></div>
+                    <h3 class="text-xl font-serif mb-2">Hotel Reservations</h3>
+                    <p class="text-gray-400 text-sm">Curated stays from luxury lodges to boutique hotels.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-tribe-gold/30 transition-colors group">
+                    <div class="w-14 h-14 bg-tribe-gold/10 rounded-full flex items-center justify-center mb-4 text-tribe-gold text-2xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-umbrella-beach"></i></div>
+                    <h3 class="text-xl font-serif mb-2">Holiday Packages</h3>
+                    <p class="text-gray-400 text-sm">Complete getaways tailored to your dreams.</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-tribe-gold/30 transition-colors group">
+                    <div class="w-14 h-14 bg-tribe-gold/10 rounded-full flex items-center justify-center mb-4 text-tribe-gold text-2xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-safari"></i></div>
+                    <h3 class="text-xl font-serif mb-2">Safari Packages</h3>
+                    <p class="text-gray-400 text-sm">Expertly crafted itineraries for unforgettable wildlife experiences.</p>
+                </div>
+                <!-- Service 5 -->
+                <div class="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-tribe-gold/30 transition-colors group">
+                    <div class="w-14 h-14 bg-tribe-gold/10 rounded-full flex items-center justify-center mb-4 text-tribe-gold text-2xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-passport"></i></div>
+                    <h3 class="text-xl font-serif mb-2">Passport Application</h3>
+                    <p class="text-gray-400 text-sm">Hassle-free assistance with your passport needs.</p>
+                </div>
+                <!-- Service 6 -->
+                <div class="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-tribe-gold/30 transition-colors group">
+                    <div class="w-14 h-14 bg-tribe-gold/10 rounded-full flex items-center justify-center mb-4 text-tribe-gold text-2xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-stamp"></i></div>
+                    <h3 class="text-xl font-serif mb-2">Visa Application</h3>
+                    <p class="text-gray-400 text-sm">Guidance for tourist, business, and transit visas.</p>
+                </div>
+                <!-- Service 7 -->
+                <div class="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-tribe-gold/30 transition-colors group">
+                    <div class="w-14 h-14 bg-tribe-gold/10 rounded-full flex items-center justify-center mb-4 text-tribe-gold text-2xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-flag"></i></div>
+                    <h3 class="text-xl font-serif mb-2">Kenyan eTA</h3>
+                    <p class="text-gray-400 text-sm">Quick and reliable electronic travel authorization.</p>
+                </div>
+                <!-- Service 8 -->
+                <div class="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-tribe-gold/30 transition-colors group">
+                    <div class="w-14 h-14 bg-tribe-gold/10 rounded-full flex items-center justify-center mb-4 text-tribe-gold text-2xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-shield-heart"></i></div>
+                    <h3 class="text-xl font-serif mb-2">Travel Insurance</h3>
+                    <p class="text-gray-400 text-sm">Comprehensive coverage for peace of mind.</p>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="services.html" class="inline-flex items-center gap-2 text-tribe-gold font-medium hover:text-white transition-colors group">
+                    <span>View All Services</span>
+                    <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -329,7 +399,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                 <div><div class="flex items-center gap-2 mb-4"><i class="fa-solid fa-compass text-2xl text-tribe-gold"></i><span class="font-serif text-xl font-bold tracking-wider">TRAVEL<span class="text-tribe-gold">TRIBE</span></span></div><p class="text-gray-400 text-sm">Connecting you to the soul of Africa and beyond.</p></div>
-                <div><h4 class="text-lg font-serif mb-4 text-tribe-gold">Quick Links</h4><ul class="space-y-2 text-gray-400 text-sm"><li><a href="index.html#home" class="hover:text-white transition-colors">Home</a></li><li><a href="destinations.html" class="hover:text-white transition-colors">Destinations</a></li><li><a href="about.html" class="hover:text-white transition-colors">About</a></li><li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li></ul></div>
+                <div><h4 class="text-lg font-serif mb-4 text-tribe-gold">Quick Links</h4><ul class="space-y-2 text-gray-400 text-sm"><li><a href="index.html#home" class="hover:text-white transition-colors">Home</a></li><li><a href="destinations.html" class="hover:text-white transition-colors">Destinations</a></li><li><a href="services.html" class="hover:text-white transition-colors">Services</a></li><li><a href="about.html" class="hover:text-white transition-colors">About</a></li><li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li></ul></div>
                 <div><h4 class="text-lg font-serif mb-4 text-tribe-gold">Contact</h4><ul class="space-y-2 text-gray-400 text-sm"><li><i class="fa-brands fa-whatsapp mr-2"></i> +254 112 098 616</li><li><i class="fa-solid fa-envelope mr-2"></i> hello@traveltribe.com</li><li><i class="fa-solid fa-location-dot mr-2"></i> Nairobi, Kenya</li></ul></div>
                 <div><h4 class="text-lg font-serif mb-4 text-tribe-gold">Newsletter</h4><div class="flex"><input type="email" placeholder="Email" class="bg-gray-800 text-white px-4 py-2 w-full outline-none text-sm border-l border-t border-b border-gray-700"><button class="bg-tribe-gold text-tribe-dark px-4 py-2 font-medium text-sm hover:bg-white transition-colors">Sub</button></div></div>
             </div>
