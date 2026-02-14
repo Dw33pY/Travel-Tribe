@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations | Travel Tribe</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'tribe-gold': '#D4AF37',
+                        'tribe-dark': '#1a1a1a',
+                        'tribe-green': '#2C3E2D',
+                        'tribe-sand': '#f4f1ea',
+                        'tribe-clay': '#C15B35'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Poppins"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f4f1ea;
+            overflow-x: hidden;
+        }
+        body.loading {
+            overflow: hidden;
+        }
+        body.modal-open {
+            overflow: hidden;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .burger-line {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .nav-active .line1 {
+            transform: rotate(45deg) translate(5px, 6px);
+            background-color: #1a1a1a;
+        }
+        .nav-active .line2 {
+            opacity: 0;
+        }
+        .nav-active .line3 {
+            transform: rotate(-45deg) translate(5px, -6px);
+            background-color: #1a1a1a;
+        }
+        /* Navbar shrink */
+        .nav-shrink {
+            height: 60px !important;
+            background: rgba(255, 255, 255, 0.9) !important;
+            backdrop-filter: blur(12px);
+        }
+        .nav-shrink .logo-icon {
+            font-size: 1.5rem !important;
+        }
+        .nav-shrink .logo-text {
+            font-size: 1.25rem !important;
+        }
+        .nav-shrink .nav-link {
+            font-size: 0.75rem !important;
+        }
+        .nav-shrink .book-now {
+            padding: 0.375rem 1rem !important;
+            font-size: 0.75rem !important;
+        }
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem 1rem;
+        }
+        .modal.active {
+            display: block;
+        }
+        .modal-content {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            z-index: 1010;
+        }
+        .modal-close:hover {
+            color: #D4AF37;
+        }
+    </style>
+</head>
+<body class="loading text-tribe-dark antialiased selection:bg-tribe-clay selection:text-white">
+
+    <!-- PRELOADER (identical to home) -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-tribe-green flex flex-col items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+        <div class="relative z-10 text-center">
+            <h1 class="loader-text text-5xl md:text-8xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-tribe-gold to-white opacity-0 translate-y-10">DESTINATIONS</h1>
+            <h1 class="loader-text text-5xl md:text-8xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-tribe-gold to-white opacity-0 translate-y-10 absolute top-0 left-0 right-0">ADVENTURES</h1>
+            <h1 class="loader-text text-5xl md:text-8xl font-serif text-white opacity-0 translate-y-10 absolute top-0 left-0 right-0"><span class="text-tribe-gold">TRAVEL</span> TRIBE</h1>
+        </div>
+        <div class="mt-8 h-1 w-0 bg-tribe-gold rounded-full" id="loader-bar"></div>
+    </div>
+
+    <div id="cursor" class="fixed w-8 h-8 border border-tribe-gold rounded-full pointer-events-none z-50 hidden md:block transition-transform duration-100 ease-out mix-blend-difference"></div>
+
+    <nav class="fixed top-0 w-full z-40 glass transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+            <div class="flex justify-between items-center w-full">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.location.href='index.html'">
+                    <i class="fa-solid fa-compass text-3xl text-tribe-clay transition-all logo-icon"></i>
+                    <span class="font-serif text-2xl font-bold tracking-wider transition-all logo-text">TRAVEL<span class="text-tribe-clay">TRIBE</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#home" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="destinations.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Destinations<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="about.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">About<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="contact.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Contact<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="https://wa.me/254112098616" class="book-now px-6 py-2 bg-tribe-dark text-white font-medium rounded-full hover:bg-tribe-clay transition-all transform hover:scale-105 shadow-lg">Book Now</a>
+                </div>
+                <div class="md:hidden z-50">
+                    <button id="burger-btn" class="flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none">
+                        <span class="line1 burger-line block w-8 h-0.5 bg-tribe-dark"></span>
+                        <span class="line2 burger-line block w-6 h-0.5 bg-tribe-dark ml-auto"></span>
+                        <span class="line3 burger-line block w-8 h-0.5 bg-tribe-dark"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu with Close Button -->
+    <div id="mobile-menu" class="fixed inset-0 bg-tribe-sand z-40 transform translate-x-full transition-transform duration-500 flex items-center justify-center">
+        <button id="mobile-close" class="absolute top-6 right-6 text-4xl text-tribe-dark hover:text-tribe-clay transition-colors z-50"><i class="fa-solid fa-times"></i></button>
+        <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div class="text-center space-y-8 relative z-10">
+            <a href="index.html#home" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Home</a>
+            <a href="destinations.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Destinations</a>
+            <a href="about.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">About</a>
+            <a href="contact.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Contact</a>
+            <div class="pt-8 border-t border-gray-300 w-24 mx-auto opacity-0 mobile-line"></div>
+            <div class="flex justify-center space-x-6 opacity-0 mobile-socials">
+                <a href="#" class="text-2xl text-tribe-dark hover:text-tribe-clay"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="text-2xl text-tribe-dark hover:text-tribe-clay"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="text-2xl text-tribe-dark hover:text-tribe-clay"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/254112098616" target="_blank" class="fixed left-6 bottom-8 z-30 flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 group">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+        <span class="absolute left-16 bg-white text-tribe-dark px-3 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm whitespace-nowrap font-medium pointer-events-none">Chat with us</span>
+    </a>
+
+    <button id="back-to-top" class="fixed right-6 bottom-8 z-30 w-12 h-12 bg-tribe-dark text-white rounded-full shadow-xl translate-y-20 opacity-0 transition-all duration-500 hover:bg-tribe-clay flex items-center justify-center">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- HERO SECTION (with parallax) -->
+    <section class="relative h-[60vh] min-h-[500px] w-full overflow-hidden flex items-center justify-center">
+        <div id="hero-bg" class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="African Landscape" class="w-full h-full object-cover scale-110">
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-tribe-dark/60 via-transparent to-transparent"></div>
+        </div>
+        <div class="relative z-10 text-center px-4">
+            <p class="hero-subtitle text-tribe-gold font-sans font-bold tracking-[0.3em] uppercase mb-4 opacity-0">Explore The World</p>
+            <h1 class="hero-title text-5xl md:text-7xl lg:text-8xl font-serif text-white leading-tight mb-6 opacity-0">Our <span class="text-tribe-gold">Destinations</span></h1>
+            <p class="hero-desc text-gray-200 text-lg md:text-xl max-w-2xl mx-auto font-light opacity-0">Click any card to reveal detailed itineraries, pricing, and unique experiences.</p>
+        </div>
+    </section>
+
+    <!-- Destinations Grid -->
+    <section class="py-24 bg-tribe-sand">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1: Maasai Mara -->
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="mara">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Maasai Mara" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Kenya</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Maasai Mara</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Witness the Great Migration and spot the Big Five in their natural habitat.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <!-- Card 2: Zanzibar -->
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="zanzibar">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1534759846116-5799c33ce22a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Zanzibar" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Tanzania</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Zanzibar</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Pristine beaches, spice tours, and the historic Stone Town.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <!-- Card 3: Giza Pyramids -->
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="giza">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Giza" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Egypt</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Giza Pyramids</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Step back in time and explore the last of the ancient wonders.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <!-- Card 4: Cape Town -->
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="capetown">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1580060839134-75a247eedd7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cape Town" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">South Africa</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Cape Town</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Table Mountain, penguins at Boulders Beach, and stunning coastlines.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <!-- Card 5: Victoria Falls -->
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="victoria">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1569940283180-269f3a6b1a23?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Victoria Falls" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Zimbabwe/Zambia</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Victoria Falls</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">The smoke that thunders – bungee jumping, white-water rafting, and more.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <!-- Card 6: Serengeti -->
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="serengeti">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1518709766631-a6c7f7856bc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Serengeti" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Tanzania</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Serengeti</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Endless plains, river crossings, and the world's greatest wildlife spectacle.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Structure -->
+    <div id="destinationModal" class="modal"><div class="modal-close" id="modalClose">&times;</div><div class="modal-content" id="modalContent"></div></div>
+
+    <footer class="bg-tribe-dark text-white pt-16 pb-6 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div><div class="flex items-center gap-2 mb-4"><i class="fa-solid fa-compass text-2xl text-tribe-gold"></i><span class="font-serif text-xl font-bold tracking-wider">TRAVEL<span class="text-tribe-gold">TRIBE</span></span></div><p class="text-gray-400 text-sm">Connecting you to the soul of Africa and beyond.</p></div>
+                <div><h4 class="text-lg font-serif mb-4 text-tribe-gold">Quick Links</h4><ul class="space-y-2 text-gray-400 text-sm"><li><a href="index.html#home" class="hover:text-white transition-colors">Home</a></li><li><a href="destinations.html" class="hover:text-white transition-colors">Destinations</a></li><li><a href="about.html" class="hover:text-white transition-colors">About</a></li><li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li></ul></div>
+                <div><h4 class="text-lg font-serif mb-4 text-tribe-gold">Contact</h4><ul class="space-y-2 text-gray-400 text-sm"><li><i class="fa-brands fa-whatsapp mr-2"></i> +254 112 098 616</li><li><i class="fa-solid fa-envelope mr-2"></i> hello@traveltribe.com</li><li><i class="fa-solid fa-location-dot mr-2"></i> Nairobi, Kenya</li></ul></div>
+                <div><h4 class="text-lg font-serif mb-4 text-tribe-gold">Newsletter</h4><div class="flex"><input type="email" placeholder="Email" class="bg-gray-800 text-white px-4 py-2 w-full outline-none text-sm border-l border-t border-b border-gray-700"><button class="bg-tribe-gold text-tribe-dark px-4 py-2 font-medium text-sm hover:bg-white transition-colors">Sub</button></div></div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center"><p class="text-gray-500 text-xs">&copy; 2024 Travel Tribe. All Rights Reserved.</p><div class="flex items-center gap-2 mt-4 md:mt-0"><span class="text-gray-500 text-xs">Made with <i class="fa-solid fa-heart text-red-500 mx-1"></i> by</span><span class="text-tribe-gold font-bold text-sm tracking-widest">Dw33pY</span></div></div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('load',()=>{let t=gsap.timeline(),e=document.querySelectorAll('.loader-text');t.to(e[0],{opacity:1,y:0,duration:.8}).to(e[0],{opacity:0,y:-20,duration:.5,delay:.2}).to(e[1],{opacity:1,y:0,duration:.8}).to(e[1],{opacity:0,y:-20,duration:.5,delay:.2}).to(e[2],{opacity:1,y:0,duration:.8}).to('#loader-bar',{width:'200px',duration:1.5},"<").to('#preloader',{yPercent:-100,duration:1.2,ease:"expo.inOut",onComplete:()=>{document.body.classList.remove('loading');heroAnimations()}},"+=0.5")});
+        function heroAnimations(){gsap.to('.hero-subtitle',{opacity:1,y:0,duration:1,delay:.2});gsap.to('.hero-title',{opacity:1,y:0,duration:1,delay:.4});gsap.to('.hero-desc',{opacity:1,y:0,duration:1,delay:.6})}
+        const burgerBtn=document.getElementById('burger-btn'),mobileMenu=document.getElementById('mobile-menu'),mobileClose=document.getElementById('mobile-close'),body=document.body;let isMenuOpen=!1;
+        function openMenu(){isMenuOpen=!0;body.classList.add('nav-active');mobileMenu.classList.remove('translate-x-full');gsap.to('.mobile-link',{opacity:1,y:0,duration:.5,stagger:.1,delay:.3});gsap.to('.mobile-line',{width:'6rem',opacity:1,duration:.5,delay:.6});gsap.to('.mobile-socials',{opacity:1,duration:.5,delay:.7})}
+        function closeMenu(){isMenuOpen=!1;body.classList.remove('nav-active');mobileMenu.classList.add('translate-x-full');gsap.to('.mobile-link',{opacity:0,y:20,duration:.2});gsap.to('.mobile-line',{width:0,opacity:0});gsap.to('.mobile-socials',{opacity:0})}
+        burgerBtn.addEventListener('click',openMenu);mobileClose.addEventListener('click',closeMenu);document.querySelectorAll('.mobile-link').forEach(t=>t.addEventListener('click',closeMenu));
+        window.addEventListener('scroll',()=>{let t=document.getElementById('navbar');window.scrollY>50?(t.classList.add('nav-shrink','shadow-lg'),t.style.background='rgba(255,255,255,0.9)'):(t.classList.remove('nav-shrink','shadow-lg'),t.style.background='rgba(255,255,255,0.1)');let e=document.getElementById('back-to-top');window.scrollY>500?e.classList.remove('translate-y-20','opacity-0'):e.classList.add('translate-y-20','opacity-0')});
+        document.getElementById('back-to-top').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+        const cursor=document.getElementById('cursor');document.addEventListener('mousemove',t=>{cursor.style.left=t.clientX-16+'px';cursor.style.top=t.clientY-16+'px'});
+        document.querySelectorAll('a, button, .destination-card').forEach(t=>{t.addEventListener('mouseenter',()=>{cursor.classList.add('scale-150','bg-white','mix-blend-difference')});t.addEventListener('mouseleave',()=>{cursor.classList.remove('scale-150','bg-white','mix-blend-difference')})});
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.to("#hero-bg img",{scrollTrigger:{trigger:"body",start:"top top",end:"bottom top",scrub:!0},y:200,ease:"none"});
+        gsap.utils.toArray('.destination-card').forEach((t,e)=>{gsap.from(t,{scrollTrigger:{trigger:t,start:"top 85%"},y:50,opacity:0,duration:.8,delay:.1*e})});
+        const modal=document.getElementById('destinationModal'),modalContent=document.getElementById('modalContent'),modalClose=document.getElementById('modalClose');
+        const destinations={mara:{title:"Maasai Mara Safari",location:"Kenya",price:"$3,200 per person",duration:"5 Days / 4 Nights",image:"https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",description:"Experience the thrill of the African savannah with our signature Maasai Mara safari. Witness the Great Migration, spot the Big Five, and enjoy luxurious tented camps.",highlights:["Daily game drives in open 4x4 vehicles","Visit a Maasai village for cultural immersion","Hot air balloon safari over the Mara (optional)","Sundowner drinks in the bush"],itinerary:"Day 1: Arrival & transfer to camp. Day 2-4: Full-day game drives. Day 5: Departure.",includes:"All park fees, professional guide, meals & accommodation, airport transfers."},zanzibar:{title:"Zanzibar Beach & Spice Escape",location:"Tanzania",price:"$2,800 per person",duration:"6 Days / 5 Nights",image:"https://images.unsplash.com/photo-1534759846116-5799c33ce22a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",description:"Relax on pristine beaches, explore Stone Town's narrow alleys, and indulge in spice tours. A perfect blend of culture and relaxation.",highlights:["Sunset dhow cruise","Spice farm tour with lunch","Snorkeling at Mnemba Atoll","Stone Town historical walking tour"],itinerary:"Day 1: Arrival in Stone Town. Day 2: Stone Town tour. Day 3-5: Beach resort stay. Day 6: Departure.",includes:"Accommodation, breakfast, spice tour, dhow cruise, airport transfers."},giza:{title:"Egyptian Wonders: Pyramids & Nile",location:"Egypt",price:"$3,500 per person",duration:"7 Days / 6 Nights",image:"https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",description:"Walk in the footsteps of pharaohs. Explore the Giza Pyramids, Sphinx, Egyptian Museum, and enjoy a Nile cruise in luxury.",highlights:["Private Egyptologist guide","Sunset camel ride at Giza","Nile dinner cruise","Visit to the Valley of the Kings"],itinerary:"Day 1: Cairo arrival. Day 2: Pyramids & Sphinx. Day 3: Egyptian Museum. Day 4-6: Nile cruise. Day 7: Departure.",includes:"All entrance fees, 5-star accommodation, most meals, private guide."},capetown:{title:"Cape Town & Garden Route",location:"South Africa",price:"$3,000 per person",duration:"7 Days / 6 Nights",image:"https://images.unsplash.com/photo-1580060839134-75a247eedd7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",description:"Discover the Mother City, ride the cable car up Table Mountain, visit penguins at Boulders Beach, and drive the scenic Garden Route.",highlights:["Table Mountain aerial cableway","Cape of Good Hope tour","Penguin colony at Boulders Beach","Wine tasting in Stellenbosch"],itinerary:"Day 1-3: Cape Town. Day 4-6: Garden Route. Day 7: Departure.",includes:"Accommodation, breakfast, selected tours, transport."},victoria:{title:"Victoria Falls Adventure",location:"Zimbabwe/Zambia",price:"$2,500 per person",duration:"4 Days / 3 Nights",image:"https://images.unsplash.com/photo-1569940283180-269f3a6b1a23?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",description:"Feel the spray of the world's largest waterfall. Enjoy bungee jumping, white-water rafting, and sunset cruises on the Zambezi.",highlights:["Guided tour of Victoria Falls","Sunset cruise on the Zambezi","Optional bungee or helicopter flight","Visit to Livingstone Island"],itinerary:"Day 1: Arrival. Day 2: Falls tour & sunset cruise. Day 3: Adventure activities. Day 4: Departure.",includes:"Accommodation, breakfast, falls tour, cruise."},serengeti:{title:"Serengeti Migration Safari",location:"Tanzania",price:"$4,200 per person",duration:"6 Days / 5 Nights",image:"https://images.unsplash.com/photo-1518709766631-a6c7f7856bc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",description:"Follow the Great Migration across the Serengeti plains. Stay in mobile camps that move with the herds for the ultimate wildlife experience.",highlights:["River crossing sightings (seasonal)","Balloon safari over the Serengeti","Visit to Olduvai Gorge","Game drives in prime predator territory"],itinerary:"Day 1: Arrival. Day 2-5: Game drives. Day 6: Departure.",includes:"All park fees, professional guide, meals & accommodation, 4x4 safari vehicle."}};
+        function openModal(t){let e=destinations[t];if(!e)return;modalContent.innerHTML=`<img src="${e.image}" alt="${e.title}" class="w-full h-80 object-cover"><div class="p-8"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">${e.location}</span><h2 class="text-3xl font-serif text-tribe-dark mt-1">${e.title}</h2><div class="flex items-center gap-4 mt-4 text-sm"><span class="bg-tribe-gold/20 text-tribe-dark px-3 py-1 rounded-full font-medium">${e.duration}</span><span class="text-tribe-clay font-bold text-xl">${e.price}</span></div><p class="text-gray-600 mt-6 leading-relaxed">${e.description}</p><h3 class="font-serif text-xl text-tribe-dark mt-8 mb-3">Highlights</h3><ul class="space-y-2">${e.highlights.map(t=>`<li class="flex items-start gap-2"><i class="fa-solid fa-check-circle text-tribe-gold mt-1"></i><span>${t}</span></li>`).join('')}</ul><h3 class="font-serif text-xl text-tribe-dark mt-8 mb-3">Sample Itinerary</h3><p class="text-gray-600">${e.itinerary}</p><h3 class="font-serif text-xl text-tribe-dark mt-8 mb-3">Includes</h3><p class="text-gray-600">${e.includes}</p><div class="mt-10 flex gap-4"><a href="https://wa.me/254112098616" class="flex-1 bg-tribe-clay text-white text-center py-3 rounded-full font-medium hover:bg-tribe-dark transition-colors">Book via WhatsApp</a><button onclick="closeModal()" class="px-6 py-3 border border-gray-300 rounded-full font-medium hover:bg-gray-100 transition-colors">Close</button></div></div>`;modal.classList.add('active');body.classList.add('modal-open')}
+        window.closeModal=function(){modal.classList.remove('active');body.classList.remove('modal-open')};modalClose.addEventListener('click',closeModal);window.addEventListener('click',t=>{t.target===modal&&closeModal()});document.querySelectorAll('.destination-card').forEach(t=>{t.addEventListener('click',()=>{let e=t.dataset.destination;openModal(e)})});
+    </script>
+</body>
+</html>
