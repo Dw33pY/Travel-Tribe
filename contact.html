@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Travel Tribe</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'tribe-gold': '#D4AF37',
+                        'tribe-dark': '#1a1a1a',
+                        'tribe-green': '#2C3E2D',
+                        'tribe-sand': '#f4f1ea',
+                        'tribe-clay': '#C15B35'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Poppins"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f4f1ea;
+            overflow-x: hidden;
+        }
+        body.loading {
+            overflow: hidden;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .burger-line {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .nav-active .line1 {
+            transform: rotate(45deg) translate(5px, 6px);
+            background-color: #1a1a1a;
+        }
+        .nav-active .line2 {
+            opacity: 0;
+        }
+        .nav-active .line3 {
+            transform: rotate(-45deg) translate(5px, -6px);
+            background-color: #1a1a1a;
+        }
+        .nav-shrink {
+            height: 60px !important;
+            background: rgba(255, 255, 255, 0.9) !important;
+            backdrop-filter: blur(12px);
+        }
+        .nav-shrink .logo-icon {
+            font-size: 1.5rem !important;
+        }
+        .nav-shrink .logo-text {
+            font-size: 1.25rem !important;
+        }
+        .nav-shrink .nav-link {
+            font-size: 0.75rem !important;
+        }
+        .nav-shrink .book-now {
+            padding: 0.375rem 1rem !important;
+            font-size: 0.75rem !important;
+        }
+    </style>
+</head>
+<body class="loading text-tribe-dark antialiased selection:bg-tribe-clay selection:text-white">
+
+    <!-- PRELOADER -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-tribe-green flex flex-col items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+        <div class="relative z-10 text-center">
+            <h1 class="loader-text text-5xl md:text-8xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-tribe-gold to-white opacity-0 translate-y-10">GET IN TOUCH</h1>
+            <h1 class="loader-text text-5xl md:text-8xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-tribe-gold to-white opacity-0 translate-y-10 absolute top-0 left-0 right-0">SAY HELLO</h1>
+            <h1 class="loader-text text-5xl md:text-8xl font-serif text-white opacity-0 translate-y-10 absolute top-0 left-0 right-0"><span class="text-tribe-gold">TRAVEL</span> TRIBE</h1>
+        </div>
+        <div class="mt-8 h-1 w-0 bg-tribe-gold rounded-full" id="loader-bar"></div>
+    </div>
+
+    <div id="cursor" class="fixed w-8 h-8 border border-tribe-gold rounded-full pointer-events-none z-50 hidden md:block transition-transform duration-100 ease-out mix-blend-difference"></div>
+
+    <nav class="fixed top-0 w-full z-40 glass transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+            <div class="flex justify-between items-center w-full">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.location.href='index.html'">
+                    <i class="fa-solid fa-compass text-3xl text-tribe-clay transition-all logo-icon"></i>
+                    <span class="font-serif text-2xl font-bold tracking-wider transition-all logo-text">TRAVEL<span class="text-tribe-clay">TRIBE</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#home" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="destinations.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Destinations<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="about.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">About<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="contact.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Contact<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="https://wa.me/254112098616" class="book-now px-6 py-2 bg-tribe-dark text-white font-medium rounded-full hover:bg-tribe-clay transition-all transform hover:scale-105 shadow-lg">Book Now</a>
+                </div>
+                <div class="md:hidden z-50">
+                    <button id="burger-btn" class="flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none">
+                        <span class="line1 burger-line block w-8 h-0.5 bg-tribe-dark"></span>
+                        <span class="line2 burger-line block w-6 h-0.5 bg-tribe-dark ml-auto"></span>
+                        <span class="line3 burger-line block w-8 h-0.5 bg-tribe-dark"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-tribe-sand z-40 transform translate-x-full transition-transform duration-500 flex items-center justify-center">
+        <button id="mobile-close" class="absolute top-6 right-6 text-4xl text-tribe-dark hover:text-tribe-clay transition-colors z-50"><i class="fa-solid fa-times"></i></button>
+        <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div class="text-center space-y-8 relative z-10">
+            <a href="index.html#home" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Home</a>
+            <a href="destinations.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Destinations</a>
+            <a href="about.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">About</a>
+            <a href="contact.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Contact</a>
+            <div class="pt-8 border-t border-gray-300 w-24 mx-auto opacity-0 mobile-line"></div>
+            <div class="flex justify-center space-x-6 opacity-0 mobile-socials">
+                <a href="#" class="text-2xl text-tribe-dark hover:text-tribe-clay"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="text-2xl text-tribe-dark hover:text-tribe-clay"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="text-2xl text-tribe-dark hover:text-tribe-clay"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/254112098616" target="_blank" class="fixed left-6 bottom-8 z-30 flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 group">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+        <span class="absolute left-16 bg-white text-tribe-dark px-3 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm whitespace-nowrap font-medium pointer-events-none">Chat with us</span>
+    </a>
+
+    <button id="back-to-top" class="fixed right-6 bottom-8 z-30 w-12 h-12 bg-tribe-dark text-white rounded-full shadow-xl translate-y-20 opacity-0 transition-all duration-500 hover:bg-tribe-clay flex items-center justify-center">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- Hero -->
+    <section class="relative h-[60vh] min-h-[500px] w-full overflow-hidden flex items-center justify-center">
+        <div id="hero-bg" class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Contact" class="w-full h-full object-cover scale-110">
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-tribe-dark/60 via-transparent to-transparent"></div>
+        </div>
+        <div class="relative z-10 text-center px-4">
+            <p class="hero-subtitle text-tribe-gold font-sans font-bold tracking-[0.3em] uppercase mb-4 opacity-0">Let's Connect</p>
+            <h1 class="hero-title text-5xl md:text-7xl lg:text-8xl font-serif text-white leading-tight mb-6 opacity-0">Contact <span class="text-tribe-gold">Us</span></h1>
+            <p class="hero-desc text-gray-200 text-lg md:text-xl max-w-2xl mx-auto font-light opacity-0">We're here to help plan your dream journey.</p>
+        </div>
+    </section>
+
+    <!-- Contact Info & Form -->
+    <section class="py-24 bg-tribe-sand">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Info -->
+                <div>
+                    <h2 class="text-3xl font-serif text-tribe-dark mb-6">Get In Touch</h2>
+                    <p class="text-gray-600 mb-8">Whether you have a question about our destinations, want to customize a trip, or just want to say hello, we'd love to hear from you.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4"><div class="w-12 h-12 bg-tribe-gold/10 rounded-full flex items-center justify-center text-tribe-clay text-xl"><i class="fa-brands fa-whatsapp"></i></div><div><h3 class="font-serif text-lg">WhatsApp</h3><a href="https://wa.me/254112098616" class="text-gray-600 hover:text-tribe-clay">+254 112 098 616</a></div></div>
+                        <div class="flex items-center gap-4"><div class="w-12 h-12 bg-tribe-gold/10 rounded-full flex items-center justify-center text-tribe-clay text-xl"><i class="fa-solid fa-envelope"></i></div><div><h3 class="font-serif text-lg">Email</h3><a href="mailto:hello@traveltribe.com" class="text-gray-600 hover:text-tribe-clay">hello@traveltribe.com</a></div></div>
+                        <div class="flex items-center gap-4"><div class="w-12 h-12 bg-tribe-gold/10 rounded-full flex items-center justify-center text-tribe-clay text-xl"><i class="fa-solid fa-location-dot"></i></div><div><h3 class="font-serif text-lg">Office</h3><p class="text-gray-600">Karen, Nairobi, Kenya</p></div></div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl">
+                    <h2 class="text-3xl font-serif text-tribe-dark mb-6">Send a Message</h2>
+                    <form id="contactForm" class="space-y-4" onsubmit="sendToWhatsApp(event)">
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Name</label><input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-tribe-gold focus:border-transparent" required></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Email</label><input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-tribe-gold focus:border-transparent" required></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">Message</label><textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-tribe-gold focus:border-transparent" required></textarea></div>
+                        <button type="submit" class="w-full bg-tribe-clay text-white py-3 rounded-full font-medium hover:bg-tribe-dark transition-colors">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map (embed) -->
+    <section class="h-96 bg-gray-300">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8462962768983!2d36.78147431475391!3d-1.292547099060684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1a6bf7445dc1%3A0x7bde4e1e7f1b8e1e!2sKaren%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1620000000000!5m2!1sen!2ske" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+    <footer class="bg-tribe-dark text-white pt-16 pb-6 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div><div class="flex items-center gap-2 mb-4"><i class="fa-solid fa-compass text-2xl text-tribe-gold"></i><span class="font-serif text-xl font-bold">TRAVEL<span class="text-tribe-gold">TRIBE</span></span></div><p class="text-gray-400 text-sm">Connecting you to the soul of Africa and beyond.</p></div>
+                <div><h4 class="text-lg font-serif mb-4 text-tribe-gold">Quick Links</h4><ul class="space-y-2 text-gray-400 text-sm"><li><a href="index.html#home" class="hover:text-white">Home</a></li><li><a href="destinations.html" class="hover:text-white">Destinations</a></li><li><a href="about.html" class="hover:text-white">About</a></li><li><a href="contact.html" class="hover:text-white">Contact</a></li></ul></div>
+                <div><h4 class="text-lg font-serif mb-4 text-tribe-gold">Contact</h4><ul class="space-y-2 text-gray-400 text-sm"><li><i class="fa-brands fa-whatsapp mr-2"></i> +254 112 098 616</li><li><i class="fa-solid fa-envelope mr-2"></i> hello@traveltribe.com</li><li><i class="fa-solid fa-location-dot mr-2"></i> Nairobi, Kenya</li></ul></div>
+                <div><h4 class="text-lg font-serif mb-4 text-tribe-gold">Newsletter</h4><div class="flex"><input type="email" placeholder="Email" class="bg-gray-800 text-white px-4 py-2 w-full text-sm border-l border-t border-b border-gray-700"><button class="bg-tribe-gold text-tribe-dark px-4 py-2 text-sm hover:bg-white">Sub</button></div></div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+                <p>&copy; 2024 Travel Tribe. All Rights Reserved.</p>
+                <div class="flex items-center gap-2 mt-4 md:mt-0"><span>Made with <i class="fa-solid fa-heart text-red-500 mx-1"></i> by</span><span class="text-tribe-gold font-bold">Dw33pY</span></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('load',()=>{let t=gsap.timeline(),e=document.querySelectorAll('.loader-text');t.to(e[0],{opacity:1,y:0,duration:.8}).to(e[0],{opacity:0,y:-20,duration:.5,delay:.2}).to(e[1],{opacity:1,y:0,duration:.8}).to(e[1],{opacity:0,y:-20,duration:.5,delay:.2}).to(e[2],{opacity:1,y:0,duration:.8}).to('#loader-bar',{width:'200px',duration:1.5},"<").to('#preloader',{yPercent:-100,duration:1.2,ease:"expo.inOut",onComplete:()=>{document.body.classList.remove('loading');gsap.to('.hero-subtitle',{opacity:1,y:0,duration:1,delay:.2});gsap.to('.hero-title',{opacity:1,y:0,duration:1,delay:.4});gsap.to('.hero-desc',{opacity:1,y:0,duration:1,delay:.6})}},"+=0.5")});
+        const burgerBtn=document.getElementById('burger-btn'),mobileMenu=document.getElementById('mobile-menu'),mobileClose=document.getElementById('mobile-close'),body=document.body;
+        function openMenu(){body.classList.add('nav-active');mobileMenu.classList.remove('translate-x-full');gsap.to('.mobile-link',{opacity:1,y:0,duration:.5,stagger:.1,delay:.3});gsap.to('.mobile-line',{width:'6rem',opacity:1,duration:.5,delay:.6});gsap.to('.mobile-socials',{opacity:1,duration:.5,delay:.7})}
+        function closeMenu(){body.classList.remove('nav-active');mobileMenu.classList.add('translate-x-full');gsap.to('.mobile-link',{opacity:0,y:20,duration:.2});gsap.to('.mobile-line',{width:0,opacity:0});gsap.to('.mobile-socials',{opacity:0})}
+        burgerBtn.addEventListener('click',openMenu);mobileClose.addEventListener('click',closeMenu);document.querySelectorAll('.mobile-link').forEach(t=>t.addEventListener('click',closeMenu));
+        window.addEventListener('scroll',()=>{let t=document.getElementById('navbar');window.scrollY>50?(t.classList.add('nav-shrink','shadow-lg'),t.style.background='rgba(255,255,255,0.9)'):(t.classList.remove('nav-shrink','shadow-lg'),t.style.background='rgba(255,255,255,0.1)');let e=document.getElementById('back-to-top');window.scrollY>500?e.classList.remove('translate-y-20','opacity-0'):e.classList.add('translate-y-20','opacity-0')});
+        document.getElementById('back-to-top').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+        const cursor=document.getElementById('cursor');document.addEventListener('mousemove',t=>{cursor.style.left=t.clientX-16+'px';cursor.style.top=t.clientY-16+'px'});
+        document.querySelectorAll('a, button, input, textarea').forEach(t=>{t.addEventListener('mouseenter',()=>{cursor.classList.add('scale-150','bg-white','mix-blend-difference')});t.addEventListener('mouseleave',()=>{cursor.classList.remove('scale-150','bg-white','mix-blend-difference')})});
+        gsap.registerPlugin(ScrollTrigger);gsap.to("#hero-bg img",{scrollTrigger:{trigger:"body",start:"top top",end:"bottom top",scrub:!0},y:200,ease:"none"});
+
+        function sendToWhatsApp(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            const whatsappMessage = `*New Inquiry from Travel Tribe Website*%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Message:* ${message}`;
+            window.open(`https://wa.me/254112098616?text=${whatsappMessage}`, '_blank');
+        }
+    </script>
+</body>
+</html>
