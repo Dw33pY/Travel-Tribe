@@ -67,7 +67,6 @@
             transform: rotate(-45deg) translate(5px, -6px);
             background-color: #1a1a1a;
         }
-        /* Navbar shrink */
         .nav-shrink {
             height: 60px !important;
             background: rgba(255, 255, 255, 0.9) !important;
@@ -86,7 +85,6 @@
             padding: 0.375rem 1rem !important;
             font-size: 0.75rem !important;
         }
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -127,19 +125,25 @@
         .modal-close:hover {
             color: #D4AF37;
         }
+        /* Filter button active state */
+        .filter-btn.active {
+            background-color: #C15B35;
+            color: white;
+            border-color: #C15B35;
+        }
     </style>
 </head>
 <body class="loading text-tribe-dark antialiased selection:bg-tribe-clay selection:text-white">
 
-    <!-- PRELOADER (identical to home) -->
+    <!-- PRELOADER -->
     <div id="preloader" class="fixed inset-0 z-[100] bg-tribe-green flex flex-col items-center justify-center overflow-hidden">
         <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
-        <div class="relative z-10 text-center">
+        <div class="relative z-10 text-center mb-16">
             <h1 class="loader-text text-5xl md:text-8xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-tribe-gold to-white opacity-0 translate-y-10">DESTINATIONS</h1>
             <h1 class="loader-text text-5xl md:text-8xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-tribe-gold to-white opacity-0 translate-y-10 absolute top-0 left-0 right-0">ADVENTURES</h1>
             <h1 class="loader-text text-5xl md:text-8xl font-serif text-white opacity-0 translate-y-10 absolute top-0 left-0 right-0"><span class="text-tribe-gold">TRAVEL</span> TRIBE</h1>
         </div>
-        <div class="mt-8 h-1 w-0 bg-tribe-gold rounded-full" id="loader-bar"></div>
+        <div class="h-1 w-0 bg-tribe-gold rounded-full" id="loader-bar"></div>
     </div>
 
     <div id="cursor" class="fixed w-8 h-8 border border-tribe-gold rounded-full pointer-events-none z-50 hidden md:block transition-transform duration-100 ease-out mix-blend-difference"></div>
@@ -152,12 +156,12 @@
                     <span class="font-serif text-2xl font-bold tracking-wider transition-all logo-text">TRAVEL<span class="text-tribe-clay">TRIBE</span></span>
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
-<a href="index.html#home" class="nav-link ...">Home</a>
-<a href="destinations.html" class="nav-link ...">Destinations</a>
-<a href="services.html" class="nav-link ...">Services</a>
-<a href="about.html" class="nav-link ...">About</a>
-<a href="contact.html" class="nav-link ...">Contact</a>
-<a href="https://wa.me/254112098616" class="book-now ...">Book Now</a>
+                    <a href="index.html#home" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="destinations.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Destinations<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="services.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Services<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="about.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">About<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="contact.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Contact<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="https://wa.me/254112098616" class="book-now px-6 py-2 bg-tribe-dark text-white font-medium rounded-full hover:bg-tribe-clay transition-all transform hover:scale-105 shadow-lg">Book Now</a>
                 </div>
                 <div class="md:hidden z-50">
                     <button id="burger-btn" class="flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none">
@@ -177,6 +181,7 @@
         <div class="text-center space-y-8 relative z-10">
             <a href="index.html#home" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Home</a>
             <a href="destinations.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Destinations</a>
+            <a href="services.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Services</a>
             <a href="about.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">About</a>
             <a href="contact.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Contact</a>
             <div class="pt-8 border-t border-gray-300 w-24 mx-auto opacity-0 mobile-line"></div>
@@ -197,10 +202,10 @@
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <!-- HERO SECTION (with parallax) -->
+    <!-- HERO SECTION -->
     <section class="relative h-[60vh] min-h-[500px] w-full overflow-hidden flex items-center justify-center">
         <div id="hero-bg" class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="African Landscape" class="w-full h-full object-cover scale-110">
+            <img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="World Map" class="w-full h-full object-cover scale-110">
             <div class="absolute inset-0 bg-black/40"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-tribe-dark/60 via-transparent to-transparent"></div>
         </div>
@@ -211,39 +216,128 @@
         </div>
     </section>
 
-    <!-- Destinations Grid -->
-    <section class="py-24 bg-tribe-sand">
+    <!-- FILTER BUTTONS -->
+    <section class="pt-12 pb-4 bg-tribe-sand">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Card 1: Maasai Mara -->
-                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="mara">
+            <div class="flex flex-wrap justify-center gap-3">
+                <button class="filter-btn active px-6 py-2 rounded-full border-2 border-tribe-clay text-tribe-clay font-medium hover:bg-tribe-clay hover:text-white transition-colors" data-filter="all">All</button>
+                <button class="filter-btn px-6 py-2 rounded-full border-2 border-tribe-clay text-tribe-clay font-medium hover:bg-tribe-clay hover:text-white transition-colors" data-filter="africa">Africa</button>
+                <button class="filter-btn px-6 py-2 rounded-full border-2 border-tribe-clay text-tribe-clay font-medium hover:bg-tribe-clay hover:text-white transition-colors" data-filter="asia">Asia</button>
+                <button class="filter-btn px-6 py-2 rounded-full border-2 border-tribe-clay text-tribe-clay font-medium hover:bg-tribe-clay hover:text-white transition-colors" data-filter="europe">Europe</button>
+                <button class="filter-btn px-6 py-2 rounded-full border-2 border-tribe-clay text-tribe-clay font-medium hover:bg-tribe-clay hover:text-white transition-colors" data-filter="americas">Americas</button>
+                <button class="filter-btn px-6 py-2 rounded-full border-2 border-tribe-clay text-tribe-clay font-medium hover:bg-tribe-clay hover:text-white transition-colors" data-filter="oceania">Oceania</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Grid (22 destinations) -->
+    <section class="py-12 bg-tribe-sand">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="destinations-grid">
+                <!-- AFRICA (8) -->
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="mara" data-continent="africa">
                     <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Maasai Mara" class="w-full h-full object-cover" loading="lazy"></div>
-                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Kenya</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Maasai Mara</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Witness the Great Migration and spot the Big Five in their natural habitat.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Kenya</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Maasai Mara</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Witness the Great Migration and spot the Big Five.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
                 </div>
-                <!-- Card 2: Zanzibar -->
-                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="zanzibar">
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="zanzibar" data-continent="africa">
                     <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1534759846116-5799c33ce22a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Zanzibar" class="w-full h-full object-cover" loading="lazy"></div>
-                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Tanzania</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Zanzibar</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Pristine beaches, spice tours, and the historic Stone Town.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Tanzania</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Zanzibar</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Pristine beaches, spice tours, and Stone Town.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
                 </div>
-                <!-- Card 3: Giza Pyramids -->
-                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="giza">
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="giza" data-continent="africa">
                     <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Giza" class="w-full h-full object-cover" loading="lazy"></div>
-                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Egypt</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Giza Pyramids</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Step back in time and explore the last of the ancient wonders.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Egypt</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Giza Pyramids</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Walk in the footsteps of pharaohs.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
                 </div>
-                <!-- Card 4: Cape Town -->
-                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="capetown">
-                    <div class="h-64 overflow-hidden"><img src="https://images.pexels.com/photos/32495850/pexels-photo-32495850.jpeg" alt="Cape Town" class="w-full h-full object-cover" loading="lazy"></div>
-                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">South Africa</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Cape Town</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Table Mountain, penguins at Boulders Beach, and stunning coastlines.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="capetown" data-continent="africa">
+                    <div class="h-64 overflow-hidden"><img src="https://images.pexels.com/photos/32495850/pexels-photo-32495850.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cape Town" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">South Africa</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Cape Town</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Table Mountain, penguins, and coastlines.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
                 </div>
-                <!-- Card 5: Victoria Falls -->
-                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="victoria">
-                    <div class="h-64 overflow-hidden"><img src="https://images.pexels.com/photos/27878405/pexels-photo-27878405.jpeg" alt="Victoria Falls" class="w-full h-full object-cover" loading="lazy"></div>
-                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Zimbabwe/Zambia</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Victoria Falls</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">The smoke that thunders – bungee jumping, white-water rafting, and more.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="victoria" data-continent="africa">
+                    <div class="h-64 overflow-hidden"><img src="https://images.pexels.com/photos/27878405/pexels-photo-27878405.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Victoria Falls" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Zimbabwe/Zambia</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Victoria Falls</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">The smoke that thunders.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
                 </div>
-                <!-- Card 6: Serengeti -->
-                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="serengeti">
-                    <div class="h-64 overflow-hidden"><img src="https://images.pexels.com/photos/35981578/pexels-photo-35981578.jpeg" alt="Serengeti" class="w-full h-full object-cover" loading="lazy"></div>
-                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Tanzania</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Serengeti</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Endless plains, river crossings, and the world's greatest wildlife spectacle.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="serengeti" data-continent="africa">
+                    <div class="h-64 overflow-hidden"><img src="https://images.pexels.com/photos/35981578/pexels-photo-35981578.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Serengeti" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Tanzania</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Serengeti</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Endless plains, river crossings.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="marrakech" data-continent="africa">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1539020141599-81a4c7d59b4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Marrakech" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Morocco</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Marrakech</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Souks, palaces, and the Atlas Mountains.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="okavango" data-continent="africa">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1620841444700-124a7a2c8afc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Okavango Delta" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Botswana</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Okavango Delta</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Mokoro safaris and wildlife.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+
+                <!-- ASIA (6) -->
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="maldives" data-continent="asia">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Maldives" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Maldives</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Maldives</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Overwater bungalows, crystal lagoons.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="seychelles" data-continent="asia">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1468413253725-0d5181091126?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Seychelles" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Seychelles</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Seychelles</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Pristine beaches, giant tortoises.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="bali" data-continent="asia">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1537996192471-5f9c0a6c7994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bali" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Indonesia</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Bali</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Temples, rice terraces, and surf.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="kyoto" data-continent="asia">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kyoto" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Japan</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Kyoto</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Geishas, temples, and cherry blossoms.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="tajmahal" data-continent="asia">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Taj Mahal" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">India</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Taj Mahal</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Symbol of love, Mughal architecture.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="greatwall" data-continent="asia">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Great Wall" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">China</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Great Wall</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Ancient wonder, hiking.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+
+                <!-- EUROPE (4) -->
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="paris" data-continent="europe">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Paris" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">France</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Paris</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Eiffel Tower, art, romance.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="santorini" data-continent="europe">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Santorini" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Greece</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Santorini</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Whitewashed buildings, sunsets.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="swissalps" data-continent="europe">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1530126483408-aa533e55bdb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Swiss Alps" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Switzerland</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Swiss Alps</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Skiing, hiking, Matterhorn.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="rome" data-continent="europe">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rome" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Italy</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Rome</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Colosseum, Vatican, history.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+
+                <!-- AMERICAS (4) -->
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="machupicchu" data-continent="americas">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Machu Picchu" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Peru</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Machu Picchu</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Incan citadel, Andes.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="nyc" data-continent="americas">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="New York" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">USA</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">New York</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Statue of Liberty, Broadway.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="grandcanyon" data-continent="americas">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1474049689656-1e6b2c8b3b2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Grand Canyon" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">USA</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Grand Canyon</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Natural wonder, hiking.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="rio" data-continent="americas">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1483729557573-9b8c8f0ad7b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rio" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Brazil</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Rio de Janeiro</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Christ the Redeemer, Copacabana.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+
+                <!-- OCEANIA (2) -->
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="sydney" data-continent="oceania">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sydney" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">Australia</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Sydney</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Opera House, Harbour Bridge.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
+                </div>
+                <div class="destination-card bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:scale-105 hover:shadow-2xl" data-destination="borabora" data-continent="oceania">
+                    <div class="h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bora Bora" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-6"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">French Polynesia</span><h3 class="text-2xl font-serif text-tribe-dark mt-1">Bora Bora</h3><p class="text-gray-600 text-sm mt-2 line-clamp-2">Overwater bungalows, lagoon.</p><div class="mt-4 flex items-center text-tribe-clay font-medium"><span>View Details</span><i class="fa-solid fa-arrow-right ml-2"></i></div></div>
                 </div>
             </div>
         </div>
@@ -257,12 +351,12 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                 <div><div class="flex items-center gap-2 mb-4"><i class="fa-solid fa-compass text-2xl text-tribe-gold"></i><span class="font-serif text-xl font-bold tracking-wider">TRAVEL<span class="text-tribe-gold">TRIBE</span></span></div><p class="text-gray-400 text-sm">Connecting you to the soul of Africa and beyond.</p></div>
                 <div><h4 class="text-lg font-serif mb-4 text-tribe-gold">Quick Links</h4><ul class="space-y-2 text-gray-400 text-sm">
-    <li><a href="index.html#home" class="hover:text-white">Home</a></li>
-    <li><a href="destinations.html" class="hover:text-white">Destinations</a></li>
-    <li><a href="services.html" class="hover:text-white">Services</a></li>
-    <li><a href="about.html" class="hover:text-white">About</a></li>
-    <li><a href="contact.html" class="hover:text-white">Contact</a></li>
-</ul></div>
+                    <li><a href="index.html#home" class="hover:text-white">Home</a></li>
+                    <li><a href="destinations.html" class="hover:text-white">Destinations</a></li>
+                    <li><a href="services.html" class="hover:text-white">Services</a></li>
+                    <li><a href="about.html" class="hover:text-white">About</a></li>
+                    <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+                </ul></div>
                 <div><h4 class="text-lg font-serif mb-4 text-tribe-gold">Contact</h4><ul class="space-y-2 text-gray-400 text-sm"><li><i class="fa-brands fa-whatsapp mr-2"></i> +254 112 098 616</li><li><i class="fa-solid fa-envelope mr-2"></i> hello@traveltribe.com</li><li><i class="fa-solid fa-location-dot mr-2"></i> Nairobi, Kenya</li></ul></div>
                 <div><h4 class="text-lg font-serif mb-4 text-tribe-gold">Newsletter</h4><div class="flex"><input type="email" placeholder="Email" class="bg-gray-800 text-white px-4 py-2 w-full outline-none text-sm border-l border-t border-b border-gray-700"><button class="bg-tribe-gold text-tribe-dark px-4 py-2 font-medium text-sm hover:bg-white transition-colors">Sub</button></div></div>
             </div>
@@ -271,23 +365,317 @@
     </footer>
 
     <script>
-        window.addEventListener('load',()=>{let t=gsap.timeline(),e=document.querySelectorAll('.loader-text');t.to(e[0],{opacity:1,y:0,duration:.8}).to(e[0],{opacity:0,y:-20,duration:.5,delay:.2}).to(e[1],{opacity:1,y:0,duration:.8}).to(e[1],{opacity:0,y:-20,duration:.5,delay:.2}).to(e[2],{opacity:1,y:0,duration:.8}).to('#loader-bar',{width:'200px',duration:1.5},"<").to('#preloader',{yPercent:-100,duration:1.2,ease:"expo.inOut",onComplete:()=>{document.body.classList.remove('loading');heroAnimations()}},"+=0.5")});
-        function heroAnimations(){gsap.to('.hero-subtitle',{opacity:1,y:0,duration:1,delay:.2});gsap.to('.hero-title',{opacity:1,y:0,duration:1,delay:.4});gsap.to('.hero-desc',{opacity:1,y:0,duration:1,delay:.6})}
+        // Preloader and animations (same as before)
+        window.addEventListener('load',()=>{
+            const tl = gsap.timeline();
+            const texts = document.querySelectorAll('.loader-text');
+            tl.to(texts[0],{opacity:1,y:0,duration:.8})
+              .to(texts[0],{opacity:0,y:-20,duration:.5,delay:.2})
+              .to(texts[1],{opacity:1,y:0,duration:.8})
+              .to(texts[1],{opacity:0,y:-20,duration:.5,delay:.2})
+              .to(texts[2],{opacity:1,y:0,duration:.8})
+              .to('#loader-bar',{width:'200px',duration:1.5},"<")
+              .to('#preloader',{yPercent:-100,duration:1.2,ease:"expo.inOut",onComplete:()=>{
+                  document.body.classList.remove('loading');
+                  heroAnimations();
+              }},"+=0.5");
+        });
+        function heroAnimations(){
+            gsap.to('.hero-subtitle',{opacity:1,y:0,duration:1,delay:.2});
+            gsap.to('.hero-title',{opacity:1,y:0,duration:1,delay:.4});
+            gsap.to('.hero-desc',{opacity:1,y:0,duration:1,delay:.6});
+        }
+        // Mobile menu
         const burgerBtn=document.getElementById('burger-btn'),mobileMenu=document.getElementById('mobile-menu'),mobileClose=document.getElementById('mobile-close'),body=document.body;let isMenuOpen=!1;
         function openMenu(){isMenuOpen=!0;body.classList.add('nav-active');mobileMenu.classList.remove('translate-x-full');gsap.to('.mobile-link',{opacity:1,y:0,duration:.5,stagger:.1,delay:.3});gsap.to('.mobile-line',{width:'6rem',opacity:1,duration:.5,delay:.6});gsap.to('.mobile-socials',{opacity:1,duration:.5,delay:.7})}
         function closeMenu(){isMenuOpen=!1;body.classList.remove('nav-active');mobileMenu.classList.add('translate-x-full');gsap.to('.mobile-link',{opacity:0,y:20,duration:.2});gsap.to('.mobile-line',{width:0,opacity:0});gsap.to('.mobile-socials',{opacity:0})}
         burgerBtn.addEventListener('click',openMenu);mobileClose.addEventListener('click',closeMenu);document.querySelectorAll('.mobile-link').forEach(t=>t.addEventListener('click',closeMenu));
+        // Navbar shrink
         window.addEventListener('scroll',()=>{let t=document.getElementById('navbar');window.scrollY>50?(t.classList.add('nav-shrink','shadow-lg'),t.style.background='rgba(255,255,255,0.9)'):(t.classList.remove('nav-shrink','shadow-lg'),t.style.background='rgba(255,255,255,0.1)');let e=document.getElementById('back-to-top');window.scrollY>500?e.classList.remove('translate-y-20','opacity-0'):e.classList.add('translate-y-20','opacity-0')});
         document.getElementById('back-to-top').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+        // Cursor
         const cursor=document.getElementById('cursor');document.addEventListener('mousemove',t=>{cursor.style.left=t.clientX-16+'px';cursor.style.top=t.clientY-16+'px'});
         document.querySelectorAll('a, button, .destination-card').forEach(t=>{t.addEventListener('mouseenter',()=>{cursor.classList.add('scale-150','bg-white','mix-blend-difference')});t.addEventListener('mouseleave',()=>{cursor.classList.remove('scale-150','bg-white','mix-blend-difference')})});
         gsap.registerPlugin(ScrollTrigger);
         gsap.to("#hero-bg img",{scrollTrigger:{trigger:"body",start:"top top",end:"bottom top",scrub:!0},y:200,ease:"none"});
+        // Card animations on load
         gsap.utils.toArray('.destination-card').forEach((t,e)=>{gsap.from(t,{scrollTrigger:{trigger:t,start:"top 85%"},y:50,opacity:0,duration:.8,delay:.1*e})});
+
+        // ---------- FILTER FUNCTIONALITY ----------
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.destination-card');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.dataset.filter;
+
+                cards.forEach(card => {
+                    if (filterValue === 'all') {
+                        card.style.display = 'block';
+                    } else {
+                        const continent = card.dataset.continent;
+                        if (continent === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+
+                // Re-run GSAP animations for visible cards? Not necessary, but we can refresh ScrollTrigger
+                ScrollTrigger.refresh();
+            });
+        });
+
+        // ---------- MODAL DATA (22 destinations) ----------
         const modal=document.getElementById('destinationModal'),modalContent=document.getElementById('modalContent'),modalClose=document.getElementById('modalClose');
-        const destinations={mara:{title:"Maasai Mara Safari",location:"Kenya",price:"$3,200 per person",duration:"5 Days / 4 Nights",image:"https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",description:"Experience the thrill of the African savannah with our signature Maasai Mara safari. Witness the Great Migration, spot the Big Five, and enjoy luxurious tented camps.",highlights:["Daily game drives in open 4x4 vehicles","Visit a Maasai village for cultural immersion","Hot air balloon safari over the Mara (optional)","Sundowner drinks in the bush"],itinerary:"Day 1: Arrival & transfer to camp. Day 2-4: Full-day game drives. Day 5: Departure.",includes:"All park fees, professional guide, meals & accommodation, airport transfers."},zanzibar:{title:"Zanzibar Beach & Spice Escape",location:"Tanzania",price:"$2,800 per person",duration:"6 Days / 5 Nights",image:"https://images.unsplash.com/photo-1534759846116-5799c33ce22a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",description:"Relax on pristine beaches, explore Stone Town's narrow alleys, and indulge in spice tours. A perfect blend of culture and relaxation.",highlights:["Sunset dhow cruise","Spice farm tour with lunch","Snorkeling at Mnemba Atoll","Stone Town historical walking tour"],itinerary:"Day 1: Arrival in Stone Town. Day 2: Stone Town tour. Day 3-5: Beach resort stay. Day 6: Departure.",includes:"Accommodation, breakfast, spice tour, dhow cruise, airport transfers."},giza:{title:"Egyptian Wonders: Pyramids & Nile",location:"Egypt",price:"$3,500 per person",duration:"7 Days / 6 Nights",image:"https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",description:"Walk in the footsteps of pharaohs. Explore the Giza Pyramids, Sphinx, Egyptian Museum, and enjoy a Nile cruise in luxury.",highlights:["Private Egyptologist guide","Sunset camel ride at Giza","Nile dinner cruise","Visit to the Valley of the Kings"],itinerary:"Day 1: Cairo arrival. Day 2: Pyramids & Sphinx. Day 3: Egyptian Museum. Day 4-6: Nile cruise. Day 7: Departure.",includes:"All entrance fees, 5-star accommodation, most meals, private guide."},capetown:{title:"Cape Town & Garden Route",location:"South Africa",price:"$3,000 per person",duration:"7 Days / 6 Nights",image:"https://images.unsplash.com/photo-1580060839134-75a247eedd7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",description:"Discover the Mother City, ride the cable car up Table Mountain, visit penguins at Boulders Beach, and drive the scenic Garden Route.",highlights:["Table Mountain aerial cableway","Cape of Good Hope tour","Penguin colony at Boulders Beach","Wine tasting in Stellenbosch"],itinerary:"Day 1-3: Cape Town. Day 4-6: Garden Route. Day 7: Departure.",includes:"Accommodation, breakfast, selected tours, transport."},victoria:{title:"Victoria Falls Adventure",location:"Zimbabwe/Zambia",price:"$2,500 per person",duration:"4 Days / 3 Nights",image:"https://images.unsplash.com/photo-1569940283180-269f3a6b1a23?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",description:"Feel the spray of the world's largest waterfall. Enjoy bungee jumping, white-water rafting, and sunset cruises on the Zambezi.",highlights:["Guided tour of Victoria Falls","Sunset cruise on the Zambezi","Optional bungee or helicopter flight","Visit to Livingstone Island"],itinerary:"Day 1: Arrival. Day 2: Falls tour & sunset cruise. Day 3: Adventure activities. Day 4: Departure.",includes:"Accommodation, breakfast, falls tour, cruise."},serengeti:{title:"Serengeti Migration Safari",location:"Tanzania",price:"$4,200 per person",duration:"6 Days / 5 Nights",image:"https://images.unsplash.com/photo-1518709766631-a6c7f7856bc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",description:"Follow the Great Migration across the Serengeti plains. Stay in mobile camps that move with the herds for the ultimate wildlife experience.",highlights:["River crossing sightings (seasonal)","Balloon safari over the Serengeti","Visit to Olduvai Gorge","Game drives in prime predator territory"],itinerary:"Day 1: Arrival. Day 2-5: Game drives. Day 6: Departure.",includes:"All park fees, professional guide, meals & accommodation, 4x4 safari vehicle."}};
-        function openModal(t){let e=destinations[t];if(!e)return;modalContent.innerHTML=`<img src="${e.image}" alt="${e.title}" class="w-full h-80 object-cover"><div class="p-8"><span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">${e.location}</span><h2 class="text-3xl font-serif text-tribe-dark mt-1">${e.title}</h2><div class="flex items-center gap-4 mt-4 text-sm"><span class="bg-tribe-gold/20 text-tribe-dark px-3 py-1 rounded-full font-medium">${e.duration}</span><span class="text-tribe-clay font-bold text-xl">${e.price}</span></div><p class="text-gray-600 mt-6 leading-relaxed">${e.description}</p><h3 class="font-serif text-xl text-tribe-dark mt-8 mb-3">Highlights</h3><ul class="space-y-2">${e.highlights.map(t=>`<li class="flex items-start gap-2"><i class="fa-solid fa-check-circle text-tribe-gold mt-1"></i><span>${t}</span></li>`).join('')}</ul><h3 class="font-serif text-xl text-tribe-dark mt-8 mb-3">Sample Itinerary</h3><p class="text-gray-600">${e.itinerary}</p><h3 class="font-serif text-xl text-tribe-dark mt-8 mb-3">Includes</h3><p class="text-gray-600">${e.includes}</p><div class="mt-10 flex gap-4"><a href="https://wa.me/254112098616" class="flex-1 bg-tribe-clay text-white text-center py-3 rounded-full font-medium hover:bg-tribe-dark transition-colors">Book via WhatsApp</a><button onclick="closeModal()" class="px-6 py-3 border border-gray-300 rounded-full font-medium hover:bg-gray-100 transition-colors">Close</button></div></div>`;modal.classList.add('active');body.classList.add('modal-open')}
-        window.closeModal=function(){modal.classList.remove('active');body.classList.remove('modal-open')};modalClose.addEventListener('click',closeModal);window.addEventListener('click',t=>{t.target===modal&&closeModal()});document.querySelectorAll('.destination-card').forEach(t=>{t.addEventListener('click',()=>{let e=t.dataset.destination;openModal(e)})});
+        const destinations = {
+            // Africa
+            mara: {
+                title:"Maasai Mara Safari", location:"Kenya", price:"$3,200 p.p.", duration:"5 Days / 4 Nights",
+                image:"https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Experience the thrill of the African savannah with our signature Maasai Mara safari. Witness the Great Migration, spot the Big Five, and enjoy luxurious tented camps.",
+                highlights:["Daily game drives in open 4x4 vehicles","Visit a Maasai village","Hot air balloon safari (optional)","Sundowner drinks"],
+                itinerary:"Day 1: Arrival & transfer. Day 2-4: Game drives. Day 5: Departure.",
+                includes:"All park fees, guide, meals & accommodation, transfers."
+            },
+            zanzibar: {
+                title:"Zanzibar Beach & Spice Escape", location:"Tanzania", price:"$2,800 p.p.", duration:"6 Days / 5 Nights",
+                image:"https://images.unsplash.com/photo-1534759846116-5799c33ce22a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Relax on pristine beaches, explore Stone Town, and indulge in spice tours.",
+                highlights:["Sunset dhow cruise","Spice farm tour","Snorkeling at Mnemba Atoll","Stone Town walking tour"],
+                itinerary:"Day 1: Stone Town. Day 2: Stone Town tour. Day 3-5: Beach resort. Day 6: Departure.",
+                includes:"Accommodation, breakfast, spice tour, dhow cruise, transfers."
+            },
+            giza: {
+                title:"Egyptian Wonders: Pyramids & Nile", location:"Egypt", price:"$3,500 p.p.", duration:"7 Days / 6 Nights",
+                image:"https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Walk in the footsteps of pharaohs. Explore the Pyramids, Sphinx, and enjoy a Nile cruise.",
+                highlights:["Private Egyptologist","Sunset camel ride","Nile dinner cruise","Valley of the Kings"],
+                itinerary:"Day 1: Cairo. Day 2: Pyramids. Day 3: Museum. Day 4-6: Nile cruise. Day 7: Departure.",
+                includes:"Entrance fees, 5-star hotels, most meals, private guide."
+            },
+            capetown: {
+                title:"Cape Town & Garden Route", location:"South Africa", price:"$3,000 p.p.", duration:"7 Days / 6 Nights",
+                image:"https://images.unsplash.com/photo-1580060839134-75a247eedd7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Discover Table Mountain, penguins, and the scenic Garden Route.",
+                highlights:["Table Mountain cableway","Cape of Good Hope","Penguin colony","Wine tasting"],
+                itinerary:"Day 1-3: Cape Town. Day 4-6: Garden Route. Day 7: Departure.",
+                includes:"Accommodation, breakfast, selected tours, transport."
+            },
+            victoria: {
+                title:"Victoria Falls Adventure", location:"Zimbabwe/Zambia", price:"$2,500 p.p.", duration:"4 Days / 3 Nights",
+                image:"https://images.unsplash.com/photo-1569940283180-269f3a6b1a23?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Feel the spray of the world's largest waterfall. Bungee, rafting, and cruises.",
+                highlights:["Falls tour","Sunset cruise","Optional bungee","Livingstone Island"],
+                itinerary:"Day 1: Arrival. Day 2: Falls & cruise. Day 3: Adventure. Day 4: Departure.",
+                includes:"Accommodation, breakfast, falls tour, cruise."
+            },
+            serengeti: {
+                title:"Serengeti Migration Safari", location:"Tanzania", price:"$4,200 p.p.", duration:"6 Days / 5 Nights",
+                image:"https://images.unsplash.com/photo-1518709766631-a6c7f7856bc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Follow the Great Migration across the Serengeti plains.",
+                highlights:["River crossings","Balloon safari","Olduvai Gorge","Game drives"],
+                itinerary:"Day 1: Arrival. Day 2-5: Game drives. Day 6: Departure.",
+                includes:"All park fees, guide, meals, 4x4 vehicle."
+            },
+            marrakech: {
+                title:"Marrakech & Atlas Mountains", location:"Morocco", price:"$2,200 p.p.", duration:"5 Days / 4 Nights",
+                image:"https://images.unsplash.com/photo-1539020141599-81a4c7d59b4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Explore souks, palaces, and hike in the Atlas Mountains.",
+                highlights:["Jemaa el-Fnaa","Bahia Palace","Atlas trek","Berber villages"],
+                itinerary:"Day 1-2: Marrakech. Day 3-4: Atlas Mountains. Day 5: Departure.",
+                includes:"Accommodation, breakfast, guided tours, transport."
+            },
+            okavango: {
+                title:"Okavango Delta Safari", location:"Botswana", price:"$4,500 p.p.", duration:"6 Days / 5 Nights",
+                image:"https://images.unsplash.com/photo-1620841444700-124a7a2c8afc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Mokoro safaris and wildlife in the world's largest inland delta.",
+                highlights:["Mokoro rides","Game drives","Birdwatching","Bush walks"],
+                itinerary:"Day 1: Maun. Day 2-4: Delta. Day 5: Moremi. Day 6: Departure.",
+                includes:"Accommodation, meals, activities, flights from Maun."
+            },
+            // Asia
+            maldives: {
+                title:"Maldives Overwater Paradise", location:"Maldives", price:"$4,500 p.p.", duration:"7 Days / 6 Nights",
+                image:"https://images.unsplash.com/photo-1514282401047-d79a71a590e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Stay in an overwater villa, snorkel in crystal lagoons.",
+                highlights:["Overwater villa","Snorkeling with turtles","Sunset dolphin cruise","Private dinners"],
+                itinerary:"Day 1: Arrival. Day 2-5: Leisure. Day 6: Island hopping. Day 7: Departure.",
+                includes:"All meals, selected excursions, transfers, butler."
+            },
+            seychelles: {
+                title:"Seychelles Island Hopping", location:"Seychelles", price:"$4,200 p.p.", duration:"8 Days / 7 Nights",
+                image:"https://images.unsplash.com/photo-1468413253725-0d5181091126?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Visit Mahé, Praslin, La Digue. Pristine beaches and giant tortoises.",
+                highlights:["Anse Source d'Argent","Vallee de Mai","Giant tortoises","Island hopping"],
+                itinerary:"Day 1-2: Mahé. Day 3-4: Praslin. Day 5-6: La Digue. Day 7: Mahé. Day 8: Departure.",
+                includes:"Inter-island flights, breakfast, tours, transfers."
+            },
+            bali: {
+                title:"Bali: Temples & Rice Terraces", location:"Indonesia", price:"$2,300 p.p.", duration:"6 Days / 5 Nights",
+                image:"https://images.unsplash.com/photo-1537996192471-5f9c0a6c7994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Explore Ubud, temples, and surf in Canggu.",
+                highlights:["Ubud Monkey Forest","Tanah Lot temple","Rice terraces","Sunset at Uluwatu"],
+                itinerary:"Day 1-2: Ubud. Day 3-4: Seminyak/Canggu. Day 5: Uluwatu. Day 6: Departure.",
+                includes:"Accommodation, breakfast, selected tours, driver."
+            },
+            kyoto: {
+                title:"Kyoto: Temples & Cherry Blossoms", location:"Japan", price:"$3,800 p.p.", duration:"5 Days / 4 Nights",
+                image:"https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Geishas, temples, and traditional tea ceremonies.",
+                highlights:["Kinkaku-ji","Fushimi Inari","Arashiyama bamboo grove","Gion district"],
+                itinerary:"Day 1-4: Kyoto. Day 5: Departure.",
+                includes:"Accommodation, breakfast, rail pass, guided tours."
+            },
+            tajmahal: {
+                title:"Taj Mahal & Golden Triangle", location:"India", price:"$2,800 p.p.", duration:"6 Days / 5 Nights",
+                image:"https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Visit Delhi, Agra, Jaipur – the iconic Golden Triangle.",
+                highlights:["Taj Mahal","Amber Fort","Qutub Minar","Local markets"],
+                itinerary:"Day 1-2: Delhi. Day 3-4: Agra. Day 5-6: Jaipur.",
+                includes:"Accommodation, breakfast, private car, guides."
+            },
+            greatwall: {
+                title:"Great Wall of China", location:"China", price:"$3,200 p.p.", duration:"5 Days / 4 Nights",
+                image:"https://images.unsplash.com/photo-1508804185872-d7badad00f7d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Hike the Great Wall and explore Beijing's highlights.",
+                highlights:["Mutianyu Great Wall","Forbidden City","Summer Palace","Peking duck"],
+                itinerary:"Day 1-2: Beijing. Day 3: Great Wall. Day 4: Beijing. Day 5: Departure.",
+                includes:"Accommodation, breakfast, tours, private driver."
+            },
+            // Europe
+            paris: {
+                title:"Paris: City of Light", location:"France", price:"$3,000 p.p.", duration:"5 Days / 4 Nights",
+                image:"https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Eiffel Tower, Louvre, Seine cruise, and romance.",
+                highlights:["Eiffel Tower","Louvre Museum","Notre-Dame","Seine cruise"],
+                itinerary:"Day 1-4: Paris. Day 5: Departure.",
+                includes:"Accommodation, breakfast, museum pass, metro tickets."
+            },
+            santorini: {
+                title:"Santorini Sunset", location:"Greece", price:"$3,400 p.p.", duration:"5 Days / 4 Nights",
+                image:"https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Whitewashed buildings, caldera views, and stunning sunsets.",
+                highlights:["Oia sunset","Fira town","Volcano tour","Akrotiri ruins"],
+                itinerary:"Day 1-4: Santorini. Day 5: Departure.",
+                includes:"Accommodation, breakfast, transfers, volcano tour."
+            },
+            swissalps: {
+                title:"Swiss Alps Adventure", location:"Switzerland", price:"$4,000 p.p.", duration:"6 Days / 5 Nights",
+                image:"https://images.unsplash.com/photo-1530126483408-aa533e55bdb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Skiing, hiking, and the Matterhorn.",
+                highlights:["Jungfraujoch","Zermatt","Interlaken","Gornergrat"],
+                itinerary:"Day 1-2: Zermatt. Day 3-4: Interlaken. Day 5: Bern. Day 6: Departure.",
+                includes:"Accommodation, breakfast, Swiss Travel Pass."
+            },
+            rome: {
+                title:"Rome: Eternal City", location:"Italy", price:"$2,900 p.p.", duration:"5 Days / 4 Nights",
+                image:"https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Colosseum, Vatican, and authentic Italian cuisine.",
+                highlights:["Colosseum","Roman Forum","Vatican Museums","Trevi Fountain"],
+                itinerary:"Day 1-4: Rome. Day 5: Departure.",
+                includes:"Accommodation, breakfast, skip-the-line tickets."
+            },
+            // Americas
+            machupicchu: {
+                title:"Machu Picchu & Cusco", location:"Peru", price:"$3,600 p.p.", duration:"6 Days / 5 Nights",
+                image:"https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Incan citadel, Sacred Valley, and Andean culture.",
+                highlights:["Machu Picchu","Cusco","Sacred Valley","Rainbow Mountain"],
+                itinerary:"Day 1-2: Cusco. Day 3: Sacred Valley. Day 4: Machu Picchu. Day 5: Cusco. Day 6: Departure.",
+                includes:"Accommodation, breakfast, train, guides."
+            },
+            nyc: {
+                title:"New York City", location:"USA", price:"$3,200 p.p.", duration:"5 Days / 4 Nights",
+                image:"https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Statue of Liberty, Broadway, Central Park.",
+                highlights:["Statue of Liberty","Times Square","Empire State","Metropolitan Museum"],
+                itinerary:"Day 1-4: NYC. Day 5: Departure.",
+                includes:"Accommodation, breakfast, metro card, attraction passes."
+            },
+            grandcanyon: {
+                title:"Grand Canyon", location:"USA", price:"$2,800 p.p.", duration:"4 Days / 3 Nights",
+                image:"https://images.unsplash.com/photo-1474049689656-1e6b2c8b3b2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"South Rim, hiking, and helicopter tours.",
+                highlights:["South Rim","Bright Angel Trail","Helicopter tour","Sunset views"],
+                itinerary:"Day 1-3: Grand Canyon. Day 4: Departure.",
+                includes:"Lodge, breakfast, guided tours."
+            },
+            rio: {
+                title:"Rio de Janeiro", location:"Brazil", price:"$2,700 p.p.", duration:"5 Days / 4 Nights",
+                image:"https://images.unsplash.com/photo-1483729557573-9b8c8f0ad7b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Christ the Redeemer, Copacabana, Sugarloaf.",
+                highlights:["Christ statue","Sugarloaf","Copacabana","Santa Teresa"],
+                itinerary:"Day 1-4: Rio. Day 5: Departure.",
+                includes:"Accommodation, breakfast, tours."
+            },
+            // Oceania
+            sydney: {
+                title:"Sydney Opera House", location:"Australia", price:"$3,500 p.p.", duration:"5 Days / 4 Nights",
+                image:"https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Opera House, Harbour Bridge, Bondi Beach.",
+                highlights:["Opera House","Harbour Bridge climb","Bondi Beach","Taronga Zoo"],
+                itinerary:"Day 1-4: Sydney. Day 5: Departure.",
+                includes:"Accommodation, breakfast, tours."
+            },
+            borabora: {
+                title:"Bora Bora", location:"French Polynesia", price:"$5,500 p.p.", duration:"6 Days / 5 Nights",
+                image:"https://images.unsplash.com/photo-1514282401047-d79a71a590e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                description:"Overwater bungalows and turquoise lagoon.",
+                highlights:["Overwater bungalow","Lagoon snorkeling","Shark & ray feeding","Helicopter tour"],
+                itinerary:"Day 1-5: Bora Bora. Day 6: Departure.",
+                includes:"All meals, transfers, excursions."
+            }
+        };
+
+        function openModal(destId){
+            const data = destinations[destId];
+            if(!data) return;
+            const phoneNumber = "254112098616";
+            const message = `Hello! I'm interested in the ${data.title} package. Can you provide more details?`;
+            const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            modalContent.innerHTML = `
+                <img src="${data.image}" alt="${data.title}" class="w-full h-80 object-cover">
+                <div class="p-8">
+                    <span class="text-tribe-clay text-xs font-bold tracking-widest uppercase">${data.location}</span>
+                    <h2 class="text-3xl font-serif text-tribe-dark mt-1">${data.title}</h2>
+                    <div class="flex items-center gap-4 mt-4 text-sm">
+                        <span class="bg-tribe-gold/20 text-tribe-dark px-3 py-1 rounded-full font-medium">${data.duration}</span>
+                        <span class="text-tribe-clay font-bold text-xl">${data.price}</span>
+                    </div>
+                    <p class="text-gray-600 mt-6 leading-relaxed">${data.description}</p>
+                    <h3 class="font-serif text-xl text-tribe-dark mt-8 mb-3">Highlights</h3>
+                    <ul class="space-y-2">${data.highlights.map(h=>`<li class="flex items-start gap-2"><i class="fa-solid fa-check-circle text-tribe-gold mt-1"></i><span>${h}</span></li>`).join('')}</ul>
+                    <h3 class="font-serif text-xl text-tribe-dark mt-8 mb-3">Sample Itinerary</h3>
+                    <p class="text-gray-600">${data.itinerary}</p>
+                    <h3 class="font-serif text-xl text-tribe-dark mt-8 mb-3">Includes</h3>
+                    <p class="text-gray-600">${data.includes}</p>
+                    <div class="mt-10 flex gap-4">
+                        <a href="${whatsappLink}" target="_blank" class="flex-1 bg-tribe-clay text-white text-center py-3 rounded-full font-medium hover:bg-tribe-dark transition-colors">Book via WhatsApp</a>
+                        <button onclick="closeModal()" class="px-6 py-3 border border-gray-300 rounded-full font-medium hover:bg-gray-100 transition-colors">Close</button>
+                    </div>
+                </div>
+            `;
+            modal.classList.add('active');
+            body.classList.add('modal-open');
+        }
+        window.closeModal = function(){
+            modal.classList.remove('active');
+            body.classList.remove('modal-open');
+        };
+        modalClose.addEventListener('click', closeModal);
+        window.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+        document.querySelectorAll('.destination-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const dest = card.dataset.destination;
+                openModal(dest);
+            });
+        });
     </script>
 </body>
 </html>
