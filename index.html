@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Tribe | Experience Africa & The World</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'tribe-gold': '#D4AF37',
+                        'tribe-dark': '#1a1a1a',
+                        'tribe-green': '#2C3E2D',
+                        'tribe-sand': '#f4f1ea',
+                        'tribe-clay': '#C15B35'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Poppins"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'pattern': "url('https://www.transparenttextures.com/patterns/cubes.png')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f4f1ea;
+            overflow-x: hidden;
+        }
+        body.loading {
+            overflow: hidden;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .burger-line {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .nav-active .line1 {
+            transform: rotate(45deg) translate(5px, 6px);
+            background-color: #1a1a1a;
+        }
+        .nav-active .line2 {
+            opacity: 0;
+        }
+        .nav-active .line3 {
+            transform: rotate(-45deg) translate(5px, -6px);
+            background-color: #1a1a1a;
+        }
+        .nav-shrink {
+            height: 60px !important;
+            background: rgba(255, 255, 255, 0.9) !important;
+            backdrop-filter: blur(12px);
+        }
+        .nav-shrink .logo-icon {
+            font-size: 1.5rem !important;
+        }
+        .nav-shrink .logo-text {
+            font-size: 1.25rem !important;
+        }
+        .nav-shrink .nav-link {
+            font-size: 0.75rem !important;
+        }
+        .nav-shrink .book-now {
+            padding: 0.375rem 1rem !important;
+            font-size: 0.75rem !important;
+        }
+    </style>
+</head>
+<body class="loading text-tribe-dark antialiased selection:bg-tribe-clay selection:text-white">
+
+    <div id="preloader" class="fixed inset-0 z-[100] bg-tribe-green flex flex-col items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+        <div class="relative z-10 text-center mb-16"> <!-- Added mb-16 to create space -->
+            <h1 class="loader-text text-5xl md:text-8xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-tribe-gold to-white opacity-0 translate-y-10">DISCOVER</h1>
+            <h1 class="loader-text text-5xl md:text-8xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-tribe-gold to-white opacity-0 translate-y-10 absolute top-0 left-0 right-0">EXPLORE</h1>
+            <h1 class="loader-text text-5xl md:text-8xl font-serif text-white opacity-0 translate-y-10 absolute top-0 left-0 right-0"><span class="text-tribe-gold">TRAVEL</span> TRIBE</h1>
+        </div>
+        <div class="h-1 w-0 bg-tribe-gold rounded-full" id="loader-bar"></div> <!-- Removed mt-8, now spacing controlled by mb-16 above -->
+    </div>
+
+    <div id="cursor" class="fixed w-8 h-8 border border-tribe-gold rounded-full pointer-events-none z-50 hidden md:block transition-transform duration-100 ease-out mix-blend-difference"></div>
+
+    <nav class="fixed top-0 w-full z-40 glass transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+            <div class="flex justify-between items-center w-full">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="fa-solid fa-compass text-3xl text-tribe-clay transition-all logo-icon"></i>
+                    <span class="font-serif text-2xl font-bold tracking-wider transition-all logo-text">TRAVEL<span class="text-tribe-clay">TRIBE</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#home" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="destinations.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Destinations<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="about.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">About<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="contact.html" class="nav-link text-sm font-medium hover:text-tribe-clay transition-colors uppercase tracking-widest relative group">Contact<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tribe-clay transition-all group-hover:w-full"></span></a>
+                    <a href="https://wa.me/254112098616" class="book-now px-6 py-2 bg-tribe-dark text-white font-medium rounded-full hover:bg-tribe-clay transition-all transform hover:scale-105 shadow-lg">Book Now</a>
+                </div>
+                <div class="md:hidden z-50">
+                    <button id="burger-btn" class="flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none">
+                        <span class="line1 burger-line block w-8 h-0.5 bg-tribe-dark"></span>
+                        <span class="line2 burger-line block w-6 h-0.5 bg-tribe-dark ml-auto"></span>
+                        <span class="line3 burger-line block w-8 h-0.5 bg-tribe-dark"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-tribe-sand z-40 transform translate-x-full transition-transform duration-500 flex items-center justify-center">
+        <button id="mobile-close" class="absolute top-6 right-6 text-4xl text-tribe-dark hover:text-tribe-clay transition-colors z-50"><i class="fa-solid fa-times"></i></button>
+        <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div class="text-center space-y-8 relative z-10">
+            <a href="index.html#home" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Home</a>
+            <a href="destinations.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Destinations</a>
+            <a href="about.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">About</a>
+            <a href="contact.html" class="mobile-link block text-4xl font-serif text-tribe-dark hover:text-tribe-clay transition-colors opacity-0 translate-y-4">Contact</a>
+            <div class="pt-8 border-t border-gray-300 w-24 mx-auto opacity-0 mobile-line"></div>
+            <div class="flex justify-center space-x-6 opacity-0 mobile-socials">
+                <a href="#" class="text-2xl text-tribe-dark hover:text-tribe-clay"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="text-2xl text-tribe-dark hover:text-tribe-clay"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="text-2xl text-tribe-dark hover:text-tribe-clay"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/254112098616" target="_blank" class="fixed left-6 bottom-8 z-30 flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 group">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+        <span class="absolute left-16 bg-white text-tribe-dark px-3 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm whitespace-nowrap font-medium pointer-events-none">Chat with us</span>
+    </a>
+
+    <button id="back-to-top" class="fixed right-6 bottom-8 z-30 w-12 h-12 bg-tribe-dark text-white rounded-full shadow-xl translate-y-20 opacity-0 transition-all duration-500 hover:bg-tribe-clay flex items-center justify-center">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <header id="home" class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+        <div id="hero-bg" class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80" alt="African Savannah" class="w-full h-full object-cover scale-110">
+            <div class="absolute inset-0 bg-black/30"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-tribe-dark/80 via-transparent to-transparent"></div>
+        </div>
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <p class="hero-subtitle text-tribe-gold font-sans font-bold tracking-[0.3em] uppercase mb-4 opacity-0">The Wild Awaits</p>
+            <h1 class="hero-title text-5xl md:text-7xl lg:text-9xl font-serif text-white leading-tight mb-8 opacity-0">Unleash Your <br><span class="italic text-tribe-gold">Inner Explorer</span></h1>
+            <p class="hero-desc text-gray-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light opacity-0">Curating bespoke journeys across the heart of Africa and the world's most breathtaking landscapes.</p>
+            <div class="hero-btn opacity-0">
+                <a href="destinations.html" class="group relative inline-flex items-center justify-center px-8 py-4 text-white bg-tribe-clay/90 overflow-hidden rounded-full transition-all hover:bg-tribe-clay shadow-xl">
+                    <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
+                    <span class="relative font-medium tracking-wide">Start Your Journey</span>
+                    <i class="fa-solid fa-arrow-right-long ml-3 relative transition-transform group-hover:translate-x-1"></i>
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div class="w-[30px] h-[50px] border-2 border-white/30 rounded-full flex justify-center pt-2">
+                <div class="w-1.5 h-1.5 bg-white rounded-full animate-ping"></div>
+            </div>
+        </div>
+    </header>
+
+    <section id="destinations" class="py-24 bg-tribe-sand relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-tribe-clay font-bold tracking-widest uppercase text-sm">Destinations</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-tribe-dark mt-2">Curated Escapes</h2>
+                <div class="w-24 h-1 bg-tribe-gold mx-auto mt-6"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="destination-card group h-[500px] relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Maasai Mara" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <span class="text-tribe-gold text-xs font-bold tracking-widest uppercase mb-2 block">Kenya</span>
+                        <h3 class="text-3xl font-serif text-white mb-2">Maasai Mara</h3>
+                        <p class="text-gray-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Experience the Great Migration and the raw beauty of the African savannah.</p>
+                        <a href="destinations.html#mara" class="mt-4 flex items-center text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200"><span>Explore</span><i class="fa-solid fa-arrow-right ml-2 text-tribe-gold"></i></a>
+                    </div>
+                </div>
+                <div class="destination-card group h-[500px] relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl md:-translate-y-12">
+                    <img src="https://images.unsplash.com/photo-1534759846116-5799c33ce22a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Zanzibar" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <span class="text-tribe-gold text-xs font-bold tracking-widest uppercase mb-2 block">Tanzania</span>
+                        <h3 class="text-3xl font-serif text-white mb-2">Zanzibar</h3>
+                        <p class="text-gray-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Turquoise waters, spice markets, and the historic Stone Town await.</p>
+                        <a href="destinations.html#zanzibar" class="mt-4 flex items-center text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200"><span>Explore</span><i class="fa-solid fa-arrow-right ml-2 text-tribe-gold"></i></a>
+                    </div>
+                </div>
+                <div class="destination-card group h-[500px] relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Giza" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <span class="text-tribe-gold text-xs font-bold tracking-widest uppercase mb-2 block">Egypt</span>
+                        <h3 class="text-3xl font-serif text-white mb-2">Giza Pyramids</h3>
+                        <p class="text-gray-300 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Walk through history in the land of Pharaohs and ancient mysteries.</p>
+                        <a href="destinations.html#giza" class="mt-4 flex items-center text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200"><span>Explore</span><i class="fa-solid fa-arrow-right ml-2 text-tribe-gold"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="destinations.html" class="inline-flex items-center gap-2 text-tribe-dark font-medium hover:text-tribe-clay transition-colors">View All Destinations <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-20 bg-tribe-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/wood-pattern.png')]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center gap-12">
+            <div class="w-full md:w-1/2">
+                <div class="relative rounded-lg overflow-hidden shadow-2xl border border-gray-700 group">
+                    <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Mountain View" class="w-full h-auto transform transition-transform duration-700 group-hover:scale-105" loading="lazy">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors">
+                        <div class="w-20 h-20 bg-white/20 backdrop-blur rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-play text-2xl text-white ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 space-y-6">
+                <h2 class="text-4xl md:text-5xl font-serif leading-tight">We Don't Just Plan Trips, <br><span class="text-tribe-gold">We Design Memories.</span></h2>
+                <p class="text-gray-400 font-light text-lg">From the dunes of Namibia to the rainforests of Rwanda, Travel Tribe ensures every detail is perfect. Luxury accommodation, expert local guides, and seamless logistics.</p>
+                <ul class="space-y-4 mt-4">
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check text-tribe-gold"></i><span>24/7 Support on WhatsApp</span></li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check text-tribe-gold"></i><span>Handpicked Eco-Lodges</span></li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-check text-tribe-gold"></i><span>Cultural Immersion</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-tribe-sand relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-tribe-clay font-bold tracking-widest uppercase text-sm">Why Choose Us</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-tribe-dark mt-2">The Travel Tribe Difference</h2>
+                <div class="w-24 h-1 bg-tribe-gold mx-auto mt-6"></div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-tribe-gold/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-tribe-gold/20 transition-colors"><i class="fa-solid fa-map text-3xl text-tribe-clay"></i></div>
+                    <h3 class="text-xl font-serif font-bold mb-3">Bespoke Itineraries</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Every journey is tailored to your pace, passions, and dreams—no two trips are alike.</p>
+                </div>
+                <div class="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-tribe-gold/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-tribe-gold/20 transition-colors"><i class="fa-solid fa-hand-holding-heart text-3xl text-tribe-clay"></i></div>
+                    <h3 class="text-xl font-serif font-bold mb-3">Local Experts</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Our guides are storytellers, historians, and conservationists who bring destinations to life.</p>
+                </div>
+                <div class="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-tribe-gold/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-tribe-gold/20 transition-colors"><i class="fa-solid fa-leaf text-3xl text-tribe-clay"></i></div>
+                    <h3 class="text-xl font-serif font-bold mb-3">Sustainable Travel</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">We partner with eco-lodges and community projects to protect the places we love.</p>
+                </div>
+                <div class="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-tribe-gold/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-tribe-gold/20 transition-colors"><i class="fa-solid fa-clock text-3xl text-tribe-clay"></i></div>
+                    <h3 class="text-xl font-serif font-bold mb-3">24/7 Concierge</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">From booking to bonfire, we're always a message away—anytime, anywhere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-tribe-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/dark-mosaic.png')]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-tribe-gold font-bold tracking-widest uppercase text-sm">Testimonials</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-white mt-2">What Our Tribe Says</h2>
+                <div class="w-24 h-1 bg-tribe-gold mx-auto mt-6"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-tribe-gold/30 transition-colors">
+                    <div class="flex items-center gap-2 text-tribe-gold mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-gray-300 text-sm italic leading-relaxed mb-6">"The Maasai Mara safari exceeded every expectation. Our guide knew exactly where to find the big cats, and the tented camp was pure luxury. Unforgettable!"</p>
+                    <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-tribe-gold/20 flex items-center justify-center text-xl font-bold text-tribe-gold">S</div><div><h4 class="font-serif text-white">Sarah J.</h4><p class="text-xs text-gray-400">Nairobi, Kenya</p></div></div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-tribe-gold/30 transition-colors">
+                    <div class="flex items-center gap-2 text-tribe-gold mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-gray-300 text-sm italic leading-relaxed mb-6">"Zanzibar with Travel Tribe was a dream. They arranged a spice tour, a private dhow sunset cruise, and the best seafood in Stone Town. Perfect honeymoon."</p>
+                    <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-tribe-gold/20 flex items-center justify-center text-xl font-bold text-tribe-gold">M</div><div><h4 class="font-serif text-white">Michael & Lisa</h4><p class="text-xs text-gray-400">London, UK</p></div></div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-tribe-gold/30 transition-colors">
+                    <div class="flex items-center gap-2 text-tribe-gold mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-gray-300 text-sm italic leading-relaxed mb-6">"Our Egypt tour was seamless. They handled every detail—from Cairo to Luxor—and we felt like royalty. The private Egyptologist was incredibly knowledgeable."</p>
+                    <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-tribe-gold/20 flex items-center justify-center text-xl font-bold text-tribe-gold">D</div><div><h4 class="font-serif text-white">David R.</h4><p class="text-xs text-gray-400">New York, USA</p></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-tribe-clay relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')] opacity-10"></div>
+        <div class="absolute top-0 left-0 text-[12rem] font-serif text-white opacity-5 whitespace-nowrap leading-none parallax-text">ADVENTURE AWAITS</div>
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <h2 class="text-4xl md:text-6xl font-serif text-white mb-6">Ready to Join the Tribe?</h2>
+            <p class="text-white/80 text-xl mb-10 font-light">Your next great adventure is just one click away. Let's build your itinerary.</p>
+            <form action="https://wa.me/254112098616" method="get" target="_blank" class="bg-white/10 backdrop-blur-md p-2 rounded-full inline-flex max-w-lg w-full">
+                <input type="text" name="text" placeholder="Where do you want to go?" class="bg-transparent text-white placeholder-white/60 px-6 py-3 w-full outline-none border-none">
+                <button type="submit" class="bg-tribe-dark text-white px-8 py-3 rounded-full hover:bg-tribe-gold hover:text-tribe-dark transition-colors font-medium whitespace-nowrap">Let's Go</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-tribe-dark text-white pt-16 pb-6 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div><div class="flex items-center gap-2 mb-4"><i class="fa-solid fa-compass text-2xl text-tribe-gold"></i><span class="font-serif text-xl font-bold tracking-wider">TRAVEL<span class="text-tribe-gold">TRIBE</span></span></div><p class="text-gray-400 text-sm">Connecting you to the soul of Africa and beyond.</p></div>
+                <div><h4 class="text-lg font-serif mb-4 text-tribe-gold">Quick Links</h4><ul class="space-y-2 text-gray-400 text-sm"><li><a href="index.html#home" class="hover:text-white transition-colors">Home</a></li><li><a href="destinations.html" class="hover:text-white transition-colors">Destinations</a></li><li><a href="about.html" class="hover:text-white transition-colors">About</a></li><li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li></ul></div>
+                <div><h4 class="text-lg font-serif mb-4 text-tribe-gold">Contact</h4><ul class="space-y-2 text-gray-400 text-sm"><li><i class="fa-brands fa-whatsapp mr-2"></i> +254 112 098 616</li><li><i class="fa-solid fa-envelope mr-2"></i> hello@traveltribe.com</li><li><i class="fa-solid fa-location-dot mr-2"></i> Nairobi, Kenya</li></ul></div>
+                <div><h4 class="text-lg font-serif mb-4 text-tribe-gold">Newsletter</h4><div class="flex"><input type="email" placeholder="Email" class="bg-gray-800 text-white px-4 py-2 w-full outline-none text-sm border-l border-t border-b border-gray-700"><button class="bg-tribe-gold text-tribe-dark px-4 py-2 font-medium text-sm hover:bg-white transition-colors">Sub</button></div></div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center"><p class="text-gray-500 text-xs">&copy; 2024 Travel Tribe. All Rights Reserved.</p><div class="flex items-center gap-2 mt-4 md:mt-0"><span class="text-gray-500 text-xs">Made with <i class="fa-solid fa-heart text-red-500 mx-1"></i> by</span><span class="text-tribe-gold font-bold text-sm tracking-widest">Dw33pY</span></div></div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('load',()=>{let t=gsap.timeline(),e=document.querySelectorAll('.loader-text');t.to(e[0],{opacity:1,y:0,duration:.8}).to(e[0],{opacity:0,y:-20,duration:.5,delay:.2}).to(e[1],{opacity:1,y:0,duration:.8}).to(e[1],{opacity:0,y:-20,duration:.5,delay:.2}).to(e[2],{opacity:1,y:0,duration:.8}).to('#loader-bar',{width:'200px',duration:1.5},"<").to('#preloader',{yPercent:-100,duration:1.2,ease:"expo.inOut",onComplete:()=>{document.body.classList.remove('loading');heroAnimations()}},"+=0.5")});
+        function heroAnimations(){gsap.to('.hero-subtitle',{opacity:1,y:0,duration:1,delay:.2});gsap.to('.hero-title',{opacity:1,y:0,duration:1,delay:.4,ease:"power4.out"});gsap.to('.hero-desc',{opacity:1,y:0,duration:1,delay:.6});gsap.to('.hero-btn',{opacity:1,y:0,duration:1,delay:.8})}
+        const burgerBtn=document.getElementById('burger-btn'),mobileMenu=document.getElementById('mobile-menu'),mobileClose=document.getElementById('mobile-close'),body=document.body;let isMenuOpen=!1;
+        function openMenu(){isMenuOpen=!0;body.classList.add('nav-active');mobileMenu.classList.remove('translate-x-full');gsap.to('.mobile-link',{opacity:1,y:0,duration:.5,stagger:.1,delay:.3});gsap.to('.mobile-line',{width:'6rem',opacity:1,duration:.5,delay:.6});gsap.to('.mobile-socials',{opacity:1,duration:.5,delay:.7})}
+        function closeMenu(){isMenuOpen=!1;body.classList.remove('nav-active');mobileMenu.classList.add('translate-x-full');gsap.to('.mobile-link',{opacity:0,y:20,duration:.2});gsap.to('.mobile-line',{width:0,opacity:0});gsap.to('.mobile-socials',{opacity:0})}
+        burgerBtn.addEventListener('click',openMenu);mobileClose.addEventListener('click',closeMenu);document.querySelectorAll('.mobile-link').forEach(t=>t.addEventListener('click',closeMenu));
+        gsap.registerPlugin(ScrollTrigger);
+        window.addEventListener('scroll',()=>{let t=document.getElementById('navbar');window.scrollY>50?(t.classList.add('nav-shrink','shadow-lg'),t.style.background='rgba(255, 255, 255, 0.9)'):(t.classList.remove('nav-shrink','shadow-lg'),t.style.background='rgba(255, 255, 255, 0.1)');let e=document.getElementById('back-to-top');window.scrollY>500?e.classList.remove('translate-y-20','opacity-0'):e.classList.add('translate-y-20','opacity-0')});
+        document.getElementById('back-to-top').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+        gsap.utils.toArray('.destination-card').forEach((t,e)=>{gsap.from(t,{scrollTrigger:{trigger:t,start:"top 85%"},y:50,opacity:0,duration:1,ease:"power3.out",delay:.2*e})});
+        gsap.to("#hero-bg img",{scrollTrigger:{trigger:"body",start:"top top",end:"bottom top",scrub:!0},y:200,ease:"none"});
+        gsap.to(".parallax-text",{scrollTrigger:{trigger:".parallax-text",start:"top bottom",end:"bottom top",scrub:1},x:-200,ease:"none"});
+        const cursor=document.getElementById('cursor');document.addEventListener('mousemove',t=>{cursor.style.left=t.clientX-16+'px';cursor.style.top=t.clientY-16+'px'});
+        document.querySelectorAll('a, button, .destination-card').forEach(t=>{t.addEventListener('mouseenter',()=>{cursor.classList.add('scale-150','bg-white','mix-blend-difference')});t.addEventListener('mouseleave',()=>{cursor.classList.remove('scale-150','bg-white','mix-blend-difference')})});
+        gsap.utils.toArray('.group').forEach(t=>{t.closest('#destinations')||gsap.from(t,{scrollTrigger:{trigger:t,start:"top 85%"},y:30,opacity:0,duration:.8,ease:"power2.out"})});
+    </script>
+</body>
+</html>
